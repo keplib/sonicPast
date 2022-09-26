@@ -1,0 +1,35 @@
+{
+  "name": "solo-test",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^1.35.7",
+    "autoprefixer": "^10",
+    "axios": "^0.27.2",
+    "billboard-top-100": "^2.6.5",
+    "core-js": "^3.8.3",
+    "dotenv": "^16.0.2",
+    "node-polyfill-webpack-plugin": "^2.0.1",
+    "pinia": "^2.0.22",
+    "postcss": "^8",
+    "process": "^0.11.10",
+    "tailwindcss": "^3",
+    "vue": "^3.2.13",
+    "vue-router": "^4.0.3",
+    "webpack": "^5.74.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "autoprefixer": "^10.4.12",
+    "postcss": "^8.4.16",
+    "tailwindcss": "^3.1.8",
+    "vue-cli-plugin-tailwind": "~3.0.0"
+  },
+  "proxy": "http://localhost:3000"
+}
