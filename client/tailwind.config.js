@@ -8,7 +8,11 @@ module.exports = {
         'fira' : ['Fira Mono', 'space'],
         'roboto': ['Roboto Mono', 'monospace'],
         'noto': ['Noto Sans Mono', 'monospace'],
-        'ibm': ['IBM Plex Mono', 'monospace']
+        'ibm': ['IBM Plex Mono', 'monospace'],
+        'majormono': ['Major Mono Display', 'monospace'],
+        'jetbrains': ['JetBrains Mono', 'monospace'],
+        'bungee': ['Bungee Hairline', 'monospace']
+
       }
     },
     colors: {

@@ -1,11 +1,12 @@
 <template>
-  <div id="info-container">
+  <div id="info-container" class="flex flex-row">
+    <h3 class="text-green text-4xl tracking-wider font-jetbrains italic m-6">0{{rank}}.</h3>
     <div>
-      <img :src="imgSource"/>
+      <img :src="imgSource" class="m-6 rounded-lg shadow-navy shadow-lg"/>
     </div>
-    <div id="info-text">
-      <h3>{{artist}}</h3>
-      <p>{{title}}</p>
+    <div id="info-text" class="flex flex-col text-left font-karla ml-6 mt-6">
+      <h3 class="font-bold text-xl text-lightest-slate">{{artist.toUpperCase()}}</h3>
+      <p class="font-normal text-lg text-green">{{title}}</p>
     </div>
   </div>
 </template>
@@ -16,23 +17,12 @@ import {defineProps} from 'vue';
 const props = defineProps({
   imgSource: String,
   artist: String,
-  title: String
+  title: String,
+  rank: Number
 });
 
 </script>
 
 <style>
-
-#infocontainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-}
-
-#info-text{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
 
 </style>

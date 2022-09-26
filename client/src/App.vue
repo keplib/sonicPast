@@ -1,13 +1,21 @@
 <template>
-  <div class="navbar-container flex flex-row justify-between items-center">
-    <h1 class="font-karla text-3xl font-bold px-4 text-light-slate">sonicPast</h1>
+  <div class="navbar-container flex flex-row justify-between items-center shadow-2xl sticky top-0">
+    <h1 class="font-karla 
+               text-3xl 
+               font-bold 
+               px-4 
+               text-lightest-slate
+                ">
+               <span class="underline font-light tracking-wider">sonic</span>
+               <span class="text-green tracking-tighter">Past</span>
+    </h1>
     <nav class="font-ibm text-xl">
       <router-link class="font-extralight p-3 mx-2
                   text-green
                   border-green 
                   border-1 rounded 
                   hover:bg-green/[0.2]" 
-                  to="/create" >_Create 
+                  to="/create" >Create 
       </router-link> 
       <router-link class="font-extralight 
                   p-3 mx-2 
@@ -15,7 +23,7 @@
                   border-green 
                   border-1 rounded
                   hover:bg-green/[0.2]" 
-                  to="/playlists">_My Playlists
+                  to="/playlists">My Playlists
       </router-link>
       <button class="font-light 
                 font-ibm
