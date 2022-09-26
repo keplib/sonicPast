@@ -6,6 +6,7 @@
             <p class="font-karla 
                     font-semibold 
                     text-lightest-slate
+                    mb-2
                     text-2xl">PICK A DATE
             </p>
             <input type="date" v-model="date"/>
@@ -25,6 +26,7 @@
                             text-green
                             border-green 
                             border-1 rounded 
+                            mt-2
                             hover:bg-green/[0.2]">GENERATE
                 </button>
             </div>
@@ -40,7 +42,8 @@
                             p-3 
                             text-green
                             border-green 
-                            border-1 rounded 
+                            border-1 rounded
+                            mt-2 
                             hover:bg-green/[0.2]">CREATE PLAYLIST
                 </button>
             </div>

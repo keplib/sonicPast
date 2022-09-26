@@ -1,5 +1,17 @@
 <template>
-  <iframe style="border-radius:12px" :src="playlistSource" width="50%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  <iframe style="border-radius:12px" 
+          :src="playlistSource" 
+          width="25%" 
+          height="80" 
+          frameBorder="0" 
+          allowfullscreen="" 
+          allow="autoplay; 
+          clipboard-write; 
+          encrypted-media; 
+          fullscreen; 
+          picture-in-picture" 
+          loading="lazy">
+  </iframe>
 </template>
 
 <script setup>

@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar-container flex flex-row justify-between items-center shadow-2xl sticky top-0">
+  <div class="navbar-container flex flex-row justify-between items-center shadow-2xl sticky top-0 backdrop-blur-lg">
     <h1 class="font-karla 
                text-3xl 
                font-bold 
@@ -57,10 +57,14 @@
 
 
 nav {
-  padding: 30px;
- 
+  padding: 20px;
 }
 
+ a.router-link-exact-active {
+  background: #47b8a520;
+  /* color: #f57dff; */
 
+  color: #57cbff
+}
 
 </style>
