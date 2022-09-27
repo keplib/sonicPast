@@ -2,9 +2,30 @@
   <Navbar />
   <p>Here you can find all your playlists</p>
   <div v-if="userPlaylists.length > 0">
+    
+    <!-- PLAYLIST TO SHOW USER'S FAVOURITES -->
     <div class="playlist-conatiner flex flex-row overflow-auto">
-      <div v-for="playlist in userPlaylists" :key="playlist.id" class="m-6">
-          <Playlist :playlistSource="playlist.uri" :title="playlist.title"/>
+      <div v-for="playlist in userPlaylists" :key="playlist.id">
+        <div v-if="playlist.favourite">
+          <Playlist :playlistSource="playlist.uri" 
+                    :title="playlist.title" 
+                    :id="playlist.id" 
+                    :isFav="playlist.favourite" 
+                    class="m-6"
+          />
+        </div>
+        <div v-else class="m-0"></div>
+      </div>
+    </div>
+
+    <!-- PLAYLISTS TO SHOW ALL PLAYLIST -->
+    <div class="playlist-conatiner flex flex-row overflow-auto">
+      <div v-for="playlist in userPlaylists" :key="playlist.id"  class="m-6">
+          <Playlist :playlistSource="playlist.uri" 
+                    :id="playlist.id" 
+                    :title="playlist.title" 
+                    :isFav="playlist.favourite"
+          />
       </div>
     </div>
   </div>
