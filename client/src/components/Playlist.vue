@@ -1,6 +1,7 @@
 <template>
   <div class="card-component 
               border border-5 
+              border-dotted
               border-green
               bg-navy
               shadow-lg shadow-lightest-navy  
@@ -12,17 +13,21 @@
             class="rounded-t-lg" 
           >
     </iframe>
-    <h1 class="font-fira 
-               font-normal 
-               text-green 
-               italic
-               text-xl
-               mt-5
-               mb-5
-               ml-5 
-               text-left">{{title}}
-    </h1>
-    <button @click="toggleFav(id, isFav)" class="border border-1 border-green">make fav {{id}} {{isFav}}</button>
+    <div class="flex flex-row justify-between">
+      <h1 class="font-fira 
+                 font-normal 
+                 text-green 
+                 italic
+                 text-xl
+                 mt-5
+                 mb-5
+                 ml-5 
+                 text-left">{{title}}
+      </h1>
+      <button @click="toggleFav(id, isFav)" >
+        <span class="material-symbols-outlined text-green mr-2 mt-2">add_circle</span>
+      </button>
+    </div>
   </div>
 </template>
 

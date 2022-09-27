@@ -1,8 +1,18 @@
 <template>
   <Navbar />
-  <p>Here you can find all your playlists</p>
+
+  <h1 class="text-left 
+             text-slate
+             tracking-wide
+             ml-6 
+             font-bold 
+             text-3xl 
+             font-karla 
+             mt-6">My favourites
+  </h1>
+
   <div v-if="userPlaylists.length > 0">
-    
+
     <!-- PLAYLIST TO SHOW USER'S FAVOURITES -->
     <div class="playlist-conatiner flex flex-row overflow-auto">
       <div v-for="playlist in userPlaylists" :key="playlist.id">
@@ -18,6 +28,15 @@
       </div>
     </div>
 
+
+    <h1 class="text-left
+               text-slate
+               ml-6 
+               tracking-wide
+               font-bold 
+               text-3xl 
+               font-karla">All
+    </h1>
     <!-- PLAYLISTS TO SHOW ALL PLAYLIST -->
     <div class="playlist-conatiner flex flex-row overflow-auto">
       <div v-for="playlist in userPlaylists" :key="playlist.id"  class="m-6">
