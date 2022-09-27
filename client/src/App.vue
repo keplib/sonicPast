@@ -1,10 +1,15 @@
 <template>
-    <router-view/>
+    <div class="flex flex-col min-h-screen">
+      <router-view/>
+      <Footer class="mt-auto"/>
+    </div>
 </template>
 
 
 <script setup>
   import './assets/tailwind.css'
+  import Footer from './components/Footer.vue';
+
   
 </script>
 
@@ -29,5 +34,6 @@ nav {
 
   color: #57cbff
 }
+
 
 </style>
