@@ -22,7 +22,7 @@
                     text-green
                     border-green 
                     border-1 rounded 
-                    hover:bg-green/[0.2]" 
+                    hover:bg-green/[0.3]" 
                     to="/create" >Create 
         </router-link> 
         <router-link class="font-extralight 
@@ -30,7 +30,7 @@
                     text-green 
                     border-green 
                     border-1 rounded
-                    hover:bg-green/[0.2]" 
+                    hover:bg-green/[0.3]" 
                     to="/playlists">My Playlists
         </router-link>
         <router-link class="font-extralight 
@@ -38,7 +38,7 @@
                   text-green 
                   border-green 
                   border-1 rounded
-                  hover:bg-green/[0.2]" 
+                  hover:bg-green/[0.3]" 
                   to="/login">Logout
       </router-link>
         

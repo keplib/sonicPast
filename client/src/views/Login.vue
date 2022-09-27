@@ -12,6 +12,9 @@
     </div>
     <button class="font-light 
                 font-ibm
+                w-1/4
+                my-auto
+                mx-auto
                 p-3                 
                 text-green
                 border-green 

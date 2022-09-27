@@ -25,7 +25,7 @@
                  text-left">{{title}}
       </h1>
       <button @click="toggleFav(id, isFav)" >
-        <span class="material-symbols-outlined text-green mr-2 mt-2">add_circle</span>
+        <span class="material-symbols-outlined text-green mr-2 mt-2 hover:text-pink hover:text-3xl">add_circle</span>
       </button>
     </div>
   </div>

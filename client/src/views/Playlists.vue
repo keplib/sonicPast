@@ -14,7 +14,7 @@
   <div v-if="userPlaylists.length > 0">
 
     <!-- PLAYLIST TO SHOW USER'S FAVOURITES -->
-    <div class="playlist-conatiner flex flex-row overflow-auto">
+    <div class="playlist-conatiner flex flex-row overflow-auto scrollbar-hide">
       <div v-for="playlist in userPlaylists" :key="playlist.id">
         <div v-if="playlist.favourite">
           <Playlist :playlistSource="playlist.uri" 
@@ -38,7 +38,7 @@
                font-karla">All
     </h1>
     <!-- PLAYLISTS TO SHOW ALL PLAYLIST -->
-    <div class="playlist-conatiner flex flex-row overflow-auto">
+    <div class="playlist-conatiner flex flex-row overflow-auto scrollbar-hide">
       <div v-for="playlist in userPlaylists" :key="playlist.id"  class="m-6">
           <Playlist :playlistSource="playlist.uri" 
                     :id="playlist.id" 

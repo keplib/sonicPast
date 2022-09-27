@@ -40,5 +40,7 @@ module.exports = {
       '8': '8px',
     }
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar-hide')
+  ],
 }
