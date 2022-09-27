@@ -2,11 +2,15 @@
     <div class="navbar-container 
                 flex flex-row 
                 justify-between 
-                items-center 
+                items-center
+                bg-navy/70 
                 shadow-2xl 
                 sticky 
                 top-0 
-                backdrop-blur-lg">
+                z-10
+                -top-1
+                backdrop-filter
+                backdrop-blur-sm">
 
         <h1 class="font-karla 
                 text-3xl 
@@ -40,7 +44,7 @@
                   border-1 rounded
                   hover:bg-green/[0.3]" 
                   to="/login">Logout
-      </router-link>
+        </router-link>
         
         </nav>
   </div>
