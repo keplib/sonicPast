@@ -1,15 +1,16 @@
 <template>
-    <div class="navbar-container flex flex-row justify-between items-center shadow-2xl bg-navy/70 sticky top-0 backdrop-blur-lg">
-        <h1 class="font-karla 
+    <div class="font-karla 
                 text-3xl 
                 font-bold 
-                px-4 
+                px-5 
+                flex flex-row justify-center
                 text-lightest-slate
-                    ">
-                <span class="underline font-light tracking-wider">sonic</span>
-                <span class="text-green tracking-tighter">Past</span>
-        </h1>
-    </div>
+                ">
+                
+                <span class="underline  decoration-1 font-light tracking-wider">soni</span>
+                <span class="material-symbols-outlined self-end text-green font-semibold text-2xl">first_page</span>
+                <span class="text-green  tracking-tighter font-semibold">past</span>
+        </div>
     <button class="font-light 
                 font-ibm
                 w-1/4

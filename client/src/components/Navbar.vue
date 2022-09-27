@@ -12,15 +12,19 @@
                 backdrop-filter
                 backdrop-blur-sm">
 
-        <h1 class="font-karla 
+        <div class="font-karla 
                 text-3xl 
                 font-bold 
-                px-4 
+                px-5 
+                flex flex-row justify-center
                 text-lightest-slate
                 ">
-                <span class="underline font-light tracking-wider">sonic</span>
-                <span class="text-green tracking-tighter">Past</span>
-        </h1>
+                
+                <span class="underline  decoration-1 font-light tracking-wider">soni</span>
+                <span class="material-symbols-outlined self-end text-pink font-semibold text-2xl">first_page</span>
+                <span class="text-green  tracking-tighter font-semibold">past</span>
+        </div>
+        
         <nav class="font-ibm text-xl">
         <router-link class="font-extralight p-3 mx-2
                     text-green
