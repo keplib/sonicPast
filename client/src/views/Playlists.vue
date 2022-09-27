@@ -2,8 +2,10 @@
   <Navbar />
   <p>Here you can find all your playlists</p>
   <div v-if="userPlaylists.length > 0">
-    <div v-for="playlist in userPlaylists" :key="playlist.id">
-      <Playlist :playlistSource="playlist.uri"/>
+    <div class="playlist-conatiner flex flex-row overflow-auto">
+      <div v-for="playlist in userPlaylists" :key="playlist.id" class="m-6">
+          <Playlist :playlistSource="playlist.uri" :title="playlist.title"/>
+      </div>
     </div>
   </div>
 </template>
@@ -36,5 +38,9 @@
 </script>
 
 <style>
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
 
 </style>
