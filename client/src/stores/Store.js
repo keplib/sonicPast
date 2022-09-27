@@ -6,6 +6,7 @@ export const useStore = defineStore('Store', () => {
     const date = ref('')
     const toplist = ref({})
     const userPlaylists = ref([])
+    const loggedIn = ref(false)
  
-    return { date, toplist, userPlaylists}
+    return { date, toplist, userPlaylists, loggedIn}
 });

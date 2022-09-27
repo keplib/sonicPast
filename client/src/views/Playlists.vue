@@ -1,4 +1,5 @@
 <template>
+  <Navbar />
   <p>Here you can find all your playlists</p>
   <div v-if="userPlaylists.length > 0">
     <div v-for="playlist in userPlaylists" :key="playlist.id">
@@ -14,6 +15,7 @@
     import { useStore } from '../stores/Store.js';
     import { storeToRefs } from 'pinia';
     import {ref} from 'vue';
+    import Navbar from '../components/Navbar.vue';
 
 
     const store = useStore();

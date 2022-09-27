@@ -1,7 +1,7 @@
 <template>
+    <Navbar />
 
     <div class="create-controls flex flex-row justify-between w-1/2 mx-auto">
-
         <div class="datepicker-container my-10  text-left">
             <p class="font-karla 
                     font-semibold 
@@ -12,7 +12,6 @@
             <input type="date" v-model="date"/>
             <br>
         </div>
-
         <div class="control-container my-10 text-left">
             <div class="mb-5">
                 <p class="font-karla 
@@ -74,6 +73,7 @@
     import {ref} from 'vue';
     import axios from 'axios';
     import Images from '../components/Images.vue';
+    import Navbar from '../components/Navbar.vue'
     import { useStore } from '../stores/Store.js';
     import { storeToRefs } from 'pinia';
 
