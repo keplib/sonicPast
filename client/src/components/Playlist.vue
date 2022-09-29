@@ -31,10 +31,10 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import {defineProps} from 'vue';
 import supabase from '../db/client'
-import { useStore } from '../stores/Store.js';
+import { useStore } from '../stores/Store';
 import { storeToRefs } from 'pinia';
 import {ref} from 'vue';
 

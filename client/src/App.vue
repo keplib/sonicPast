@@ -6,9 +6,8 @@
 </template>
 
 
-<script setup>
+<script setup lang="ts">
   import './assets/tailwind.css'
-  import Footer from './components/Footer.vue';
 
   
 </script>
