@@ -55,26 +55,32 @@ import Images from "../components/Images.vue";
 import Navbar from "../components/Navbar.vue";
 import { useStore } from "../stores/Store";
 import { storeToRefs } from "pinia";
-
+interface Obj {
+  created_at: string;
+  favourite: boolean;
+  id: number;
+  title: string;
+  uri: string;
+}
+interface songs {
+  [key: string]: Obj;
+}
 const store = useStore();
 const { date, toplist } = storeToRefs(store);
 
-const getChart = () => {
+const getChart = async () => {
   const options = {
     method: "GET",
     url: "http://localhost:3000/api/chart",
     params: { date: date.value },
   };
 
-  axios
-    .request(options)
-    .then(function (response) {
-      toplist.value = response.data.songs.slice(0, 10);
-      console.log(toplist.value);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
+  try {
+    const response = await axios.request(options);
+    toplist.value = response.data.songs.slice(0, 10);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const createPlaylist = () => {
