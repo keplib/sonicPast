@@ -1,37 +1,40 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Create  from '../views/Create.vue';
-import Playlists from '../views/Playlists.vue';
-import  App from '../App.vue';
-import Login from '../views/Login.vue';
+import { createRouter, createWebHistory, Router } from "vue-router";
+import Create from "../views/Create.vue";
+import Playlists from "../views/Playlists.vue";
+import App from "../App.vue";
+import Login from "../views/Login.vue";
 
+interface routes {
+  path: string;
+  name: string;
+}
 
 const routes = [
   {
-    path: '/',
-    name: 'app',
-    component: App
+    path: "/",
+    name: "app",
+    component: App,
   },
   {
-    path: '/create',
-    name: 'create',
-    component: Create
-    
+    path: "/create",
+    name: "create",
+    component: Create,
   },
   {
-    path: '/login',
-    name: 'login',
-    component: Login
-  }, 
-  {
-    path: '/playlists',
-    name: 'playlists',
-    component: Playlists
+    path: "/login",
+    name: "login",
+    component: Login,
   },
-]
+  {
+    path: "/playlists",
+    name: "playlists",
+    component: Playlists,
+  },
+];
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+const router: Router = createRouter({
+  history: createWebHistory(""),
+  routes,
+});
 
-export default router
+export default router;

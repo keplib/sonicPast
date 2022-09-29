@@ -50,7 +50,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
 import axios from "axios";
 import Images from "../components/Images.vue";
 import Navbar from "../components/Navbar.vue";
@@ -89,14 +88,14 @@ const loginHandler = () => {
   axios.get("http://localhost:3000/login");
 };
 
-let dtToday = new Date();
+let dtToday: Date = new Date();
 let month: number | string = dtToday.getMonth() + 1;
 let day: number | string = dtToday.getDate();
-let year = dtToday.getFullYear();
+let year: number = dtToday.getFullYear();
 if (month < 10) month = "0" + month.toString();
 if (day < 10) day = "0" + day.toString();
 
-let maxDate = year + "-" + month + "-" + day;
+let maxDate: string = year + "-" + month + "-" + day;
 </script>
 
 <style></style>
