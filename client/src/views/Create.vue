@@ -54,7 +54,7 @@ import { ref } from "vue";
 import axios from "axios";
 import Images from "../components/Images.vue";
 import Navbar from "../components/Navbar.vue";
-import { useStore } from "../stores/Store.js";
+import { useStore } from "../stores/Store";
 import { storeToRefs } from "pinia";
 
 const store = useStore();
