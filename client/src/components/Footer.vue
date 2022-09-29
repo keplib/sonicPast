@@ -1,6 +1,4 @@
-<template>
-    <!-- test comment !!!! -->
-    
+<template>    
     <footer>
         <p>Barcelona, 2022. </p>
     </footer>
