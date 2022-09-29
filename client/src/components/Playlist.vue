@@ -20,12 +20,21 @@
   </div>
 </template>
 
+<<<<<<< HEAD
 <script setup>
 import { defineProps } from "vue";
 import supabase from "../db/client";
 import { useStore } from "../stores/Store";
 import { storeToRefs } from "pinia";
 import { ref } from "vue";
+=======
+<script setup lang="ts">
+import {defineProps} from 'vue';
+import supabase from '../db/client'
+import { useStore } from '../stores/Store';
+import { storeToRefs } from 'pinia';
+import {ref} from 'vue';
+>>>>>>> refs/remotes/origin/dev
 
 const store = useStore();
 const { userPlaylists } = storeToRefs(store);

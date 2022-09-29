@@ -43,14 +43,22 @@
   </div>
 </template>
 
-<script setup>
-import { defineProps } from "vue";
+<script setup lang="ts">
+import { defineProps, Ref } from "vue";
 import Playlist from "../components/Playlist.vue";
 import supabase from "../db/client";
 import { useStore } from "../stores/Store";
 import { storeToRefs } from "pinia";
 import { ref } from "vue";
 import Navbar from "../components/Navbar.vue";
+
+
+interface Store {
+  date: Ref<string>,
+  toplist: Ref<{}>,
+  userPlaylists: Ref<any[]>,
+  loggedIn: Ref<boolean>,
+}
 
 const store = useStore();
 const { userPlaylists } = storeToRefs(store);

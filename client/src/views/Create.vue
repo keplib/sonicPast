@@ -37,12 +37,12 @@
 
   <!-- GENERATED PLAYLIST WILL BE SHOWN IN THIS SECTION -->
   <div v-if="toplist">
-    <div v-for="item in toplist" :key="item.rank">
+    <div v-for="item in toplist" :key="item['rank']">
       <Images
-        :imgSource="item.cover"
-        :artist="item.artist"
-        :title="item.title"
-        :rank="item.rank"
+        :imgSource="item['cover']"
+        :artist="item['artist']"
+        :title="item['title']"
+        :rank="item['rank']"
         class="w-1/2 border border-1 border-green m-auto rounded-lg border-dotted my-4"
       />
     </div>
