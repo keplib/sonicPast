@@ -18,13 +18,13 @@
       <img :src="imgSource" class="m-6 rounded-lg shadow-navy shadow-lg"/>
     </div>
     <div id="info-text" class="flex flex-col text-left font-karla ml-6 mt-6">
-      <h3 class="font-bold text-xl text-lightest-slate tracking-wider">{{artist.toUpperCase()}}</h3>
+      <h3 v-if="artist" class="font-bold text-xl text-lightest-slate tracking-wider">{{artist.toUpperCase()}}</h3>
       <p class="font-semibold text-lg text-green tracking-wider italic">{{title}}</p>
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import {defineProps} from 'vue';
 
 const props = defineProps({

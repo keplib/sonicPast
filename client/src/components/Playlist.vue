@@ -20,7 +20,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { defineProps } from "vue";
 import supabase from "../db/client";
 import { useStore } from "../stores/Store";
@@ -37,7 +37,7 @@ const props = defineProps({
   isFav: Boolean,
 });
 
-const toggleFav = async (item:any, fav:any) => {
+const toggleFav = async (item: number | undefined, fav: boolean) => {
   const { data, error } = await supabase
     .from("playlists_db")
     .update({ favourite: !fav })
