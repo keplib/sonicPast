@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getApiChart = void 0;
 const { getChart } = require("billboard-top-100");
 const dbClient = require("../database/client");
 require("dotenv").config();
@@ -43,9 +44,10 @@ const getLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 const getApiChart = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let date = req.query.date;
-        getChart("hot-100", `${date}`, (err, chart) => {
+        getChart((err, chart) => {
             if (err)
                 console.log(err);
+            console.log(chart);
             res.status(200);
             res.send(chart);
         });
@@ -54,6 +56,7 @@ const getApiChart = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         console.log(error);
     }
 });
+exports.getApiChart = getApiChart;
 // Callback route for OAuth
 const getCallback = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -125,7 +128,7 @@ const getPlaylists = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     res.send("playlists route");
 });
 module.exports = {
-    getApiChart,
+    getApiChart: exports.getApiChart,
     getLogin,
     getPlaylists,
     findTrack,

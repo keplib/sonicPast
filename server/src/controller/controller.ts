@@ -41,11 +41,12 @@ interface Obj {
   title: string;
   uri: string;
 }
-const getApiChart = async (req: Request, res: Response): Promise<void> => {
+export const getApiChart = async (req: Request, res: Response): Promise<void> => {
   try {
     let date = req.query.date;
     getChart("hot-100", `${date}`, (err: Error, chart: Obj) => {
       if (err) console.log(err);
+      console.log(chart);
       res.status(200);
       res.send(chart);
     });
