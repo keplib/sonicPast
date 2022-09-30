@@ -25,7 +25,6 @@ import { defineProps } from "vue";
 import supabase from "../db/client";
 import { useStore } from "../stores/Store";
 import { storeToRefs } from "pinia";
-import { ref } from "vue";
 
 const store = useStore();
 const { userPlaylists } = storeToRefs(store);
@@ -38,19 +37,27 @@ const props = defineProps({
 });
 
 const toggleFav = async (item: number | undefined, fav: boolean) => {
-  const { data, error } = await supabase
-    .from("playlists_db")
-    .update({ favourite: !fav })
-    .match({ id: item });
+  try {
+    const { data, error } = await supabase
+      .from("playlists_db")
+      .update({ favourite: !fav })
+      .match({ id: item });
 
-  const getData = async () => {
-    const { data, error } = await supabase.from("playlists_db").select();
+    const getData = async () => {
+      try {
+        const { data, error } = await supabase.from("playlists_db").select();
 
-    userPlaylists.value = data;
-    console.log(userPlaylists.value);
-  };
+        userPlaylists.value = data;
+        console.log(userPlaylists.value);
+      } catch (error) {
+        console.log("error getting favourite data from supabase", error);
+      }
+    };
 
-  getData();
+    getData();
+  } catch (error) {
+    console.log("error toggling favourite", error);
+  }
 };
 </script>
 

@@ -10,7 +10,10 @@
   <div v-if="userPlaylists && userPlaylists.length > 0">
     <!-- PLAYLIST TO SHOW USER'S FAVOURITES -->
     <div class="playlist-conatiner flex flex-row overflow-auto scrollbar-hide">
-      <div v-for="playlist in userPlaylists" :key="playlist ? playlist['id'] : playlist">
+      <div
+        v-for="playlist in userPlaylists"
+        :key="playlist ? playlist['id'] : playlist"
+      >
         <div v-if="playlist['favourite']">
           <Playlist
             :playlistSource="playlist['uri']"
@@ -31,7 +34,11 @@
     </h1>
     <!-- PLAYLISTS TO SHOW ALL PLAYLIST -->
     <div class="playlist-conatiner flex flex-row overflow-auto scrollbar-hide">
-      <div v-for="playlist in userPlaylists" :key="playlist ? playlist['id'] : playlist" class="m-6">
+      <div
+        v-for="playlist in userPlaylists"
+        :key="playlist ? playlist['id'] : playlist"
+        class="m-6"
+      >
         <Playlist
           :playlistSource="playlist['uri']"
           :id="playlist['id']"
@@ -44,26 +51,25 @@
 </template>
 
 <script setup lang="ts">
-import { SupabaseClient } from "@supabase/supabase-js";
-import { defineProps, Ref } from "vue";
 import Playlist from "../components/Playlist.vue";
 import supabase from "../db/client";
 import { useStore } from "../stores/Store";
 import { storeToRefs } from "pinia";
-import { ref } from "vue";
 import Navbar from "../components/Navbar.vue";
-
 
 const store = useStore();
 const { userPlaylists } = storeToRefs(store);
 
 const getData = async () => {
-  const { data, error } = await supabase.from("playlists_db").select();
-  console.log('u',userPlaylists);
+  try {
+    const { data, error } = await supabase.from("playlists_db").select();
+    console.log("u", userPlaylists);
 
-
-  userPlaylists.value = data;
-  console.log(userPlaylists.value);
+    userPlaylists.value = data;
+    console.log(userPlaylists.value);
+  } catch (error) {
+    console.log("error getting playlist data", error);
+  }
 };
 
 getData();
