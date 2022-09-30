@@ -144,6 +144,6 @@ app.get('/playlists', async (req, res) => {
 
 // Running the server
 app.listen('3000', (req, res) => {
-    console.log('Server is up and runnign! ');
+    console.log('Server is up and runniggngngngnn! ');
 });
 
