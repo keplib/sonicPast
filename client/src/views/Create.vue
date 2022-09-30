@@ -70,19 +70,19 @@ const getChart = async () => {
     const response = await axios.request(options);
     toplist.value = response.data.songs.slice(0, 10);
   } catch (error) {
-    console.log(error);
+    console.log("error getting chart", error);
   }
 };
 
 const createPlaylist = () => {
-  axios.post("http://localhost:3000/findTrack", {
-    date: date.value,
-    songs: toplist.value,
-  });
-};
-
-const loginHandler = () => {
-  axios.get("http://localhost:3000/login");
+  try {
+    axios.post("http://localhost:3000/findTrack", {
+      date: date.value,
+      songs: toplist.value,
+    });
+  } catch (error) {
+    console.log("error creating playlist", error);
+  }
 };
 
 let dtToday: Date = new Date();
