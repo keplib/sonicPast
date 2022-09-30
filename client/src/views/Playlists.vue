@@ -7,10 +7,10 @@
     My favourites
   </h1>
 
-  <div v-if="userPlaylists.length > 0">
+  <div v-if="userPlaylists && userPlaylists.length > 0">
     <!-- PLAYLIST TO SHOW USER'S FAVOURITES -->
     <div class="playlist-conatiner flex flex-row overflow-auto scrollbar-hide">
-      <div v-for="playlist in userPlaylists" :key="playlist['id']">
+      <div v-for="playlist in userPlaylists" :key="playlist ? playlist['id'] : playlist">
         <div v-if="playlist['favourite']">
           <Playlist
             :playlistSource="playlist['uri']"
@@ -31,7 +31,7 @@
     </h1>
     <!-- PLAYLISTS TO SHOW ALL PLAYLIST -->
     <div class="playlist-conatiner flex flex-row overflow-auto scrollbar-hide">
-      <div v-for="playlist in userPlaylists" :key="playlist['id']" class="m-6">
+      <div v-for="playlist in userPlaylists" :key="playlist ? playlist['id'] : playlist" class="m-6">
         <Playlist
           :playlistSource="playlist['uri']"
           :id="playlist['id']"
@@ -59,7 +59,7 @@ const { userPlaylists } = storeToRefs(store);
 
 const getData = async () => {
   const { data, error } = await supabase.from("playlists_db").select();
-  console.log(userPlaylists);
+  console.log('u',userPlaylists);
 
 
   userPlaylists.value = data;

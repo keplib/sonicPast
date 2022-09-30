@@ -43,7 +43,7 @@
         :artist="item['artist']"
         :title="item['title']"
         :rank="item['rank']"
-        class="w-1/2 border border-1 border-green m-auto rounded-lg border-dotted my-4"
+        class="w-1/2 border-1 border-green m-auto rounded-lg border-dotted my-4"
       />
     </div>
   </div>

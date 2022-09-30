@@ -8,15 +8,15 @@ interface Obj {
     title: string;
     uri: string;
 }
-interface songs {
-    [key: string]: Obj;
-}
+// interface songs {
+//     [key: string]: Obj;
+// }
 
 
 export const useStore = defineStore('Store', () => {
     const date = ref<string>('')
     const toplist = ref({})
-    const userPlaylists = ref<any>([])
+    const userPlaylists = ref<Obj[] | null>([])
     const loggedIn = ref<boolean>(false)
  
     return { date, toplist, userPlaylists, loggedIn}
