@@ -4,7 +4,7 @@
   </footer>
 </template>
 
-<script setup>
+<script lang="ts">
 //test comment
 </script>
 

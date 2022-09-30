@@ -56,7 +56,7 @@
 
 
 
-<script setup>
+<script lang="ts">
 
 
 
