@@ -4,6 +4,12 @@
   "description": "simple server for OAuth",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "node ./dist/index.js",
+    "tsc": "tsc",
+    "postinstall": "npm run tsc",
+    "dev": "ts-node-dev --respawn --pretty --transpile-only index.ts"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^1.35.7",
     "billboard-top-100": "^2.6.5",
