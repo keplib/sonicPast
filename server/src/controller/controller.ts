@@ -26,7 +26,7 @@ const spotifyApi = new SpotifyWebApi({
 });
 
 // Route for starting OAuth
-const getLogin = async (req: Request, res: Response) => {
+const getLogin = async (req: Request, res: Response): Promise<void> => {
   try {
     res.redirect(spotifyApi.createAuthorizeURL(scopes));
   } catch (error) {
@@ -34,13 +34,17 @@ const getLogin = async (req: Request, res: Response) => {
   }
 };
 // get the chart from Billboard 100 API
-
+interface Obj {
+  created_at: string;
+  favourite: boolean;
+  id: number;
+  title: string;
+  uri: string;
+}
 const getApiChart = async (req: Request, res: Response): Promise<void> => {
   try {
     let date = req.query.date;
-    getChart("hot-100", `${date}`, (err: Error, chart) => {
-      console.log(chart);
-
+    getChart("hot-100", `${date}`, (err: Error, chart: Obj) => {
       if (err) console.log(err);
       res.status(200);
       res.send(chart);

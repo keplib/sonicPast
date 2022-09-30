@@ -40,12 +40,10 @@ const getLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         console.log(error);
     }
 });
-// get the chart from Billboard 100 API
 const getApiChart = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let date = req.query.date;
         getChart("hot-100", `${date}`, (err, chart) => {
-            console.log(chart);
             if (err)
                 console.log(err);
             res.status(200);
