@@ -47,6 +47,7 @@ export const getApiChart = async (
 ): Promise<void> => {
   try {
     let date = req.query.date;
+    console.log("hello>>", date);
 
     getChart("hot-100", `${date}`, (err: Error, chart: Obj) => {
       if (err) console.log(err);

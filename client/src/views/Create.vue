@@ -68,7 +68,7 @@ const getChart = async () => {
 
   try {
     const response = await axios.request(options);
-    console.log(await response);
+    console.log(response);
     toplist.value = response.data.songs.slice(0, 10);
   } catch (error) {
     console.log("error getting chart", error);
