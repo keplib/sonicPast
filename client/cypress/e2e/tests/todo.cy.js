@@ -44,10 +44,13 @@ describe("Create page", () => {
   it("should have logo", () => {
     cy.contains("soni");
   });
-  it("should have a input", () => {
-    cy.get("input").type("1970-10-06").get(".mb-5 > .font-light").click();
-  });
   it("should generate songs for playlist", () => {
-    cy.contains("01.");
+    cy.get("input")
+      .type("1970-10-06")
+      .get(".mb-5 > .font-light")
+      .click()
+      .then(() => {
+        cy.contains("NEIL DIAMOND");
+      });
   });
 });
