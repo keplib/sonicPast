@@ -3,6 +3,8 @@
 describe("Playlist page", () => {
   beforeEach(() => {
     cy.visit("http://localhost:8080/playlists");
+    cy.get(".flex-col > :nth-child(3) > :nth-child(3)").as("allPlaylists");
+    cy.get(".flex-col > :nth-child(3) > :nth-child(1)").as("favourites");
   });
   it("should have a button", () => {
     cy.get("button").should("exist");
@@ -16,6 +18,12 @@ describe("Playlist page", () => {
   });
   it("should hava logo", () => {
     cy.contains("soni").should("exist");
+  });
+  it("should be able to add to favourites", () => {
+    cy.get("@allPlaylists").find("button").first().click();
+  });
+  it("should be able to remove from favourites", () => {
+    cy.get("@favourites").find("button").first().click();
   });
 });
 describe("Login page", () => {
@@ -37,6 +45,9 @@ describe("Create page", () => {
     cy.contains("soni");
   });
   it("should have a input", () => {
-    cy.get("input").click();
+    cy.get("input").type("1970-10-06").get(".mb-5 > .font-light").click();
+  });
+  it("should generate songs for playlist", () => {
+    cy.contains("01.");
   });
 });
