@@ -46,12 +46,12 @@ export const getApiChart = async (req: Request, res: Response): Promise<void> =>
     let date = req.query.date;
     getChart("hot-100", `${date}`, (err: Error, chart: Obj) => {
       if (err) console.log(err);
-      console.log(chart);
       res.status(200);
       res.send(chart);
     });
   } catch (error) {
     console.log(error);
+    res.status(404).json('Invalid request');
   }
 };
 // Callback route for OAuth
