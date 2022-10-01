@@ -1,11 +1,11 @@
 // Setting up basic express server
-const express = require("express");
-const cors = require("cors");
-import { Application } from "express";
+import express from "express";
+import cors from "cors";
+import { Express } from "express";
 import router from "./router";
 
-export const createApp = () => {
-    const newapp:Application = express();
+export const createApp = ():Express => {
+    const newapp = express();
     newapp.use(cors());
     newapp.use(express.json());
     newapp.use(router);
@@ -15,6 +15,6 @@ export const createApp = () => {
 const app = createApp();
 
 // Running the server
-app.listen("3000", () => {
+export const server = app.listen("3000", () => {
     console.log("Server is up and running! ")
 });

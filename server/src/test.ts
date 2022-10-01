@@ -1,13 +1,25 @@
-import { Application } from "express";
-const request = require('supertest');
-const { createApp } = require('./index');
 
-const app: Application = createApp();
+import request from 'supertest';
+import { createApp, server } from './index';
 
-describe('getChart', () => {
+const app = createApp();
+
+describe('Index', () => {
+
+    afterAll(() => {
+        server.close();
+    });
+
+    const testApp  = createApp();
+    it('should create server app', () => {
+        expect(typeof testApp).toBe('function');
+    })
+
+})
+
+describe('Controller getApiChart', () => {
 
     describe("with correct params", () => {
-
         it('should get list', async () => {
             await request(app).get("/api/chart").query({ date: '2016-08-27' }).expect(200);
         })
@@ -19,6 +31,13 @@ describe('getChart', () => {
         })
     })
 })
+
+describe('getPlaylists', () => {
+    it("should return route for callback", async () => {
+        await request(app).get("/playlists").expect('playlists route');
+    })
+})
+
 
 
 

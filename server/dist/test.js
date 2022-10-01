@@ -8,19 +8,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const request = require('supertest');
-const { createApp } = require('./index');
-const app = createApp();
-describe('getChart', () => {
+const supertest_1 = __importDefault(require("supertest"));
+const index_1 = require("./index");
+const app = (0, index_1.createApp)();
+describe('Index', () => {
+    const testApp = (0, index_1.createApp)();
+    it('should create server app', () => {
+        expect(typeof testApp).toBe('function');
+    });
+});
+describe('Controller getApiChart', () => {
     describe("with correct params", () => {
         it('should get list', () => __awaiter(void 0, void 0, void 0, function* () {
-            yield request(app).get("/api/chart").query({ date: '2016-08-27' }).expect(200);
+            yield (0, supertest_1.default)(app).get("/api/chart").query({ date: '2016-08-27' }).expect(200);
         }));
     });
     describe("if no date is provided", () => {
         it('should get a 404', () => __awaiter(void 0, void 0, void 0, function* () {
-            yield request(app).get("/api/chart").expect(404);
+            yield (0, supertest_1.default)(app).get("/api/chart").expect(404);
         }));
     });
+});
+describe('getPlaylists', () => {
+    it("should return route for callback", () => __awaiter(void 0, void 0, void 0, function* () {
+        yield (0, supertest_1.default)(app).get("/playlists").expect(200);
+    }));
 });
