@@ -41,9 +41,13 @@ interface Obj {
   title: string;
   uri: string;
 }
-export const getApiChart = async (req: Request, res: Response): Promise<void> => {
+export const getApiChart = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     let date = req.query.date;
+
     getChart("hot-100", `${date}`, (err: Error, chart: Obj) => {
       if (err) console.log(err);
       res.status(200);
@@ -51,7 +55,7 @@ export const getApiChart = async (req: Request, res: Response): Promise<void> =>
     });
   } catch (error) {
     console.log(error);
-    res.status(404).json('Invalid request');
+    res.status(404).json("Invalid request");
   }
 };
 // Callback route for OAuth
