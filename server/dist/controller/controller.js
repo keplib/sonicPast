@@ -42,17 +42,20 @@ const getLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 const getApiChart = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    let date = req.query.date;
-    console.log(date);
     try {
-        getChart("hot-100", `${date}`, (err, chart) => {
-            res.status(200);
-            res.send(chart);
-        });
+        let date = req.query.date;
+        if (!date) {
+            res.status(404).end('Invalid date');
+        }
+        else {
+            getChart("hot-100", `${date}`, (err, chart) => {
+                res.status(200).send(chart);
+            });
+        }
     }
     catch (error) {
         console.log(error);
-        res.status(404).json('Invalid request');
+        res.status(404).send('Invalid request');
     }
 });
 exports.getApiChart = getApiChart;

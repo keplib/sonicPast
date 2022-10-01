@@ -1,5 +1,7 @@
-const Router = require("express");
-const router = Router();
+import { Router } from "express";
+
+// const Router = require("express");
+const router:Router = Router();
 const controller = require("./controller/controller");
 
 router.get("/login", controller.getLogin);

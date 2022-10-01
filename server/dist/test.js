@@ -15,14 +15,11 @@ const { createApp } = require('./index');
 const getApiChart = require('../dist/controller/controller.js');
 const app = createApp();
 describe('getChart', () => {
-    beforeEach(() => {
-        jest.setTimeout(60000);
+    describe("with correct params", () => {
+        it('should get list', () => __awaiter(void 0, void 0, void 0, function* () {
+            yield request(app).get("/api/chart").query({ date: '2016-08-27' }).expect(200);
+        }));
     });
-    // describe("with correct params", () => {
-    //     it('should get list', async () => {
-    //         await request(app).get("/api/chart").query({ date: '2016-08-27' }).expect(200);
-    //     })
-    // });
     describe("if no date is provided", () => {
         it('should get a 404', () => __awaiter(void 0, void 0, void 0, function* () {
             yield request(app).get("/api/chart").expect(404);
