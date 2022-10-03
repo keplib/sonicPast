@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col min-h-screen">
+  <div class="flex flex-col min-h-screen" role="main">
     <router-view />
-    <Footer class="mt-auto" />
+    <!-- <Footer class="mt-auto" /> -->
   </div>
 </template>
 

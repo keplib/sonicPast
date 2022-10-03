@@ -6,6 +6,9 @@ import { createPinia, Pinia } from "pinia";
 const pinia: Pinia = createPinia();
 const app = createApp(App);
 
+const html = document.documentElement;
+html.setAttribute("lang", "en");
+
 app.use(pinia);
 app.use(router);
 
