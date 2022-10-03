@@ -105,21 +105,26 @@ const getCallback = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
+interface song  {
+  title: string,
+  artist: string,
+}
+
 const findTrack = async (req: Request, res: Response): Promise<void> => {
-  const date = req.body.date;
-  const songs = req.body.songs;
+  const date: string = req.body.date;
+  const songs: song[] = req.body.songs;
 
   try {
     const newPlaylist = await spotifyApi.createPlaylist(`${date}`, {
       description: "Playlist created by SonicPast",
       public: true,
     });
-    let playlistID = newPlaylist.body.uri.split(":")[2];
+    let playlistID: string = newPlaylist.body.uri.split(":")[2];
     console.log(playlistID);
 
     // ADD HERE SUPABASE INSERT
     const playlistURI = `https://open.spotify.com/embed/playlist/${playlistID}?utm_source=generator`;
-    const favorite = false;
+    const favorite: boolean = false;
     const title = date;
 
     const { data, error } = await dbClient
@@ -137,14 +142,17 @@ const findTrack = async (req: Request, res: Response): Promise<void> => {
         ]);
       }
     }
+    res.send(201);
   } catch (error) {
     console.log(error);
+    res.send(404);
   }
 };
 
 const getPlaylists = async (req: Request, res: Response): Promise<void> => {
   res.send("playlists route");
 };
+
 
 module.exports = {
   getApiChart,

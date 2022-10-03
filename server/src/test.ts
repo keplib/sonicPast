@@ -21,7 +21,8 @@ describe('Controller getApiChart', () => {
 
     describe("with correct params", () => {
         it('should get list', async () => {
-            await request(app).get("/api/chart").query({ date: '2016-08-27' }).expect(200);
+            await request(app).get("/api/chart").query({ date: '2016-08-27' })
+            .expect(200)
         })
     });
 
@@ -34,9 +35,12 @@ describe('Controller getApiChart', () => {
 
 describe('getPlaylists', () => {
     it("should return route for callback", async () => {
-        await request(app).get("/playlists").expect('playlists route');
+        await request(app).get("/playlists")
+            .expect('playlists route')
+            .expect(200)
     })
 })
+
 
 
 

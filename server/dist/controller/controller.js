@@ -121,9 +121,11 @@ const findTrack = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 ]);
             }
         }
+        res.send(201);
     }
     catch (error) {
         console.log(error);
+        res.send(404);
     }
 });
 const getPlaylists = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
