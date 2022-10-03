@@ -1,22 +1,47 @@
 // import Playlist from "../src/views/Playlist.vue";
+import { describe, test } from "vitest";
+import supabase from "../src/db/client";
 
-function increment(current, max = 10) {
-  if (current < max) {
-    return current + 1;
+const { expect } = require("chai");
+const toggleFav = async (item, fav) => {
+  try {
+    const { data, error } = await supabase
+      .from("playlists_db")
+      .update({ favourite: !fav })
+      .match({ id: item });
+
+    const getData = async () => {
+      try {
+        const { data, error } = await supabase.from("playlists_db").select();
+
+        userPlaylists.value = data;
+        console.log(userPlaylists.value);
+      } catch (error) {
+        console.log("error getting favourite data from supabase", error);
+      }
+    };
+
+    getData();
+  } catch (error) {
+    console.log("error toggling favourite", error);
   }
-  return current;
-}
+};
 
-describe("increment", () => {
-  test("increments the current number by 1", () => {
-    expect(increment(0, 10)).toBe(1);
+describe("toggleFav", () => {
+  test("expect to toggle favourites", () => {
+    toggleFav(1, true).then((response) => {
+      console.log(response);
+    });
   });
+});
 
-  test("does not increment the current number over the max", () => {
-    expect(increment(10, 10)).toBe(10);
-  });
-
-  test("has a default max of 10", () => {
-    expect(increment(10)).toBe(10);
+describe("supabase", () => {
+  test("expect response from database", () => {
+    supabase
+      .from("playlists_db")
+      .select()
+      .then((response) => {
+        expect(response.data).not(null);
+      });
   });
 });
