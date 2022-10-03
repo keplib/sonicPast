@@ -39,11 +39,11 @@
   <div v-if="toplist">
     <div v-for="item in toplist" :key="item['rank']">
       <Images
-        :imgSource="item['cover']"
-        :artist="item['artist']"
-        :title="item['title']"
-        :rank="item['rank']"
-        class="w-1/2 border-1 border-green m-auto rounded-lg border-dotted my-4"
+      :imgSource="item['cover']"
+      :artist="item['artist']"
+      :title="item['title']"
+      :rank="item['rank']"
+      class="w-1/2 border-1 border-green m-auto rounded-lg border-dotted my-4"
       />
     </div>
   </div>
@@ -68,7 +68,6 @@ const getChart = async () => {
 
   try {
     const response = await axios.request(options);
-    console.log(response);
     toplist.value = response.data.songs.slice(0, 10);
   } catch (error) {
     console.log("error getting chart", error);
