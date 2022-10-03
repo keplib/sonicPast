@@ -1,8 +1,15 @@
 <template>
   <div
-    class="card-component border border-5 border-dotted border-green bg-navy shadow-lg shadow-lightest-navy rounded-lg"
+    role="banner"
+    class="card-component border border-5 border-dotted border-green bg-[rgb(10 25 47)] shadow-lg shadow-lightest-navy rounded-lg"
   >
-    <iframe :src="playlistSource" width="300" height="300" class="rounded-t-lg">
+    <iframe
+      :src="playlistSource"
+      width="300"
+      height="300"
+      class="rounded-t-lg"
+      :title="playlistSource"
+    >
     </iframe>
     <div class="flex flex-row justify-between">
       <h1
