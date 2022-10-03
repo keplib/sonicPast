@@ -1,7 +1,7 @@
 <template>
   <Navbar />
   <h1>Create</h1>
-  <div class="create-controls flex flex-row justify-between w-1/2 mx-auto">
+  <div class="create-controls flex flex-row justify-around lg:justify-between w-full lg:w-1/2 mx-auto">
     <div class="datepicker-container my-10 text-left">
       <p class="font-karla font-semibold text-lightest-slate mb-2 text-2xl">
         PICK A DATE
@@ -50,7 +50,7 @@
       :artist="item['artist']"
       :title="item['title']"
       :rank="item['rank']"
-      class="w-1/2 border-1 border-green m-auto rounded-lg border-dotted my-4"
+      class="w-full sm:w-[75%] lg:w-1/2 border-1 grid grid-cols-3 border-green m-auto rounded-lg border-dotted my-4"
       />
     </div>
   </div>

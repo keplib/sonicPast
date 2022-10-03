@@ -1,38 +1,73 @@
 <template>
   <div
-    class="navbar-container flex flex-row justify-between items-center bg-navy/70 shadow-2xl sticky z-10 -top-1 backdrop-filter backdrop-blur-sm"
-  >
-    <div
-      class="font-karla text-3xl font-bold px-5 flex flex-row justify-center text-lightest-slate"
-    >
+    class="navbar-container flex flex-row justify-between items-center bg-navy/70 shadow-2xl sticky z-10 -top-1 backdrop-filter backdrop-blur-sm">
+    <div class="font-karla text-3xl font-bold px-5 flex flex-row justify-center text-lightest-slate">
       <span class="underline decoration-1 font-light tracking-wider">soni</span>
-      <span
-        class="material-symbols-outlined self-end text-pink font-semibold text-2xl"
-        >first_page</span
-      >
+      <span class="material-symbols-outlined self-end text-pink font-semibold text-2xl">first_page</span>
       <span class="text-green tracking-tighter font-semibold">past</span>
     </div>
-
-    <nav class="font-ibm text-xl">
-      <router-link
-        class="font-extralight p-3 mx-2 text-green border-green border-1 rounded hover:bg-green/[0.3]"
-        to="/create"
-        >Create
+    <!-- Web nav -->
+    <nav class="font-ibm text-xl hidden sm:block">
+      <router-link class="font-extralight p-1 md:p-3 mx-2 text-green border-green border-1 rounded hover:bg-green/[0.3]"
+        to="/create">Create
       </router-link>
-      <router-link
-        class="font-extralight p-3 mx-2 text-green border-green border-1 rounded hover:bg-green/[0.3]"
-        to="/playlists"
-        >My Playlists
+      <router-link class="font-extralight p-1 md:p-3 mx-2 text-green border-green border-1 rounded hover:bg-green/[0.3]"
+        to="/playlists">My Playlists
       </router-link>
-      <router-link
-        class="font-extralight p-3 mx-2 text-green border-green border-1 rounded hover:bg-green/[0.3]"
-        to="/login"
-        >Logout
+      <router-link class="font-extralight p-1 md:p-3 mx-2 text-green border-green border-1 rounded hover:bg-green/[0.3]"
+        to="/login">Logout
       </router-link>
     </nav>
+
+    <!-- Mobile nav -->
+    <div v-if="nav" class="block sm:hidden">
+      <button @click="togglenav()" class="px-6 py-2 text-4xl absolute right-4 -top-2">&#9776;</button>
+    </div>
+
+    <div v-else class="block sm:hidden">
+      <div>
+        <button @click="togglenav()" class="px-6 py-2 text-4xl absolute right-4 -top-2">X</button>
+        <nav class="font-ibm pr-48 p-0">
+
+          <div class="absolute flex flex-col z-20 p-0 mt-12">
+            <router-link class="font-extralight text-green bg-navy border-green border-1 rounded hover:bg-green hover:text-white left-0 py-4 px-10"
+              to="/create">Create
+            </router-link>
+            <router-link class="font-extralight text-green bg-navy border-green border-1 rounded hover:bg-green hover:text-white left-0 py-4 px-10"
+              to="/playlists">My Playlists
+            </router-link>
+            <router-link class="font-extralight text-green bg-navy border-green border-1 rounded hover:bg-green hover:text-white left-0 py-4 px-10"
+              to="/login">Logout
+            </router-link>
+
+          </div>
+      
+        </nav>
+
+      </div>
+    </div>
+
+
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useStore } from "../stores/Store";
+import { storeToRefs } from "pinia";
+const store = useStore();
+let { nav } = storeToRefs(store);
 
-<style></style>
+const togglenav = () => {
+  if (nav.value) {
+    nav.value = !nav.value;
+  } else {
+    nav.value = true;
+  }
+}
+
+
+</script>
+
+<style>
+
+</style>
