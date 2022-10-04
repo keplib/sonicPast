@@ -20,7 +20,7 @@
     </nav>
 
     <!-- Mobile nav -->
-    <div v-if="nav" class="block sm:hidden">
+    <div v-if="!nav" class="block sm:hidden">
       <button @click="togglenav()" class="px-6 py-4 text-4xl absolute right-4 -top-2 z-10">&#9776;</button>
     </div>
 
@@ -32,15 +32,15 @@
           <div class="absolute flex flex-col p-3 pt-16 top-0 bg-navy w-full right-0">
             <router-link
               class="font-extralight text-green bg-navy border-green border-1 rounded hover:bg-green hover:text-white left-0 py-4 px-10"
-              to="/create">Create
+              to="/create" @click="togglenav()">Create
             </router-link>
             <router-link
               class="font-extralight text-green bg-navy border-green border-1 rounded hover:bg-green hover:text-white left-0 py-4 px-10"
-              to="/playlists">My Playlists
+              to="/playlists" @click="togglenav()">My Playlists
             </router-link>
             <router-link
               class="font-extralight text-green bg-navy border-green border-1 rounded hover:bg-green hover:text-white left-0 py-4 px-10"
-              to="/login">Logout
+              to="/login" @click="togglenav()">Logout
             </router-link>
 
           </div>

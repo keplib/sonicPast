@@ -15,10 +15,11 @@ interface Obj {
 
 export const useStore = defineStore('Store', () => {
     const date = ref<string>('')
-    const toplist = ref({})
+    const toplist = ref<any>([])
+    const show = ref({})
     const userPlaylists = ref<Obj[] | null>([])
     const loggedIn = ref<boolean>(false)
     const nav = ref<boolean>(false)
  
-    return { date, toplist, userPlaylists, loggedIn, nav}
+    return { date, toplist, userPlaylists, loggedIn, nav , show}
 });

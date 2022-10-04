@@ -10,7 +10,7 @@
         </p>
         <button
           @click="getChart"
-          class="font-light font-ibm p-3 px-4 text-green border-green border-1 rounded mt-2 hover:bg-green/[0.2]"
+          class="font-light font-ibm p-3 px-4 min-w-[150px] min-h-[75px] text-green border-green border-1 rounded mt-2 hover:bg-green/[0.2]"
         >
           GENERATE
         </button>
@@ -21,7 +21,7 @@
         </p>
         <button
           @click="createPlaylist"
-          class="font-light font-ibm p-3 px-4 text-green border-green border-1 rounded mt-2 hover:bg-green/[0.2]"
+          class="font-light font-ibm p-3 px-4 text-green border-green border-1 rounded mt-2 hover:bg-green/[0.2] min-w-[150px] min-h-[75px]"
         >
           CREATE PLAYLIST
         </button>
@@ -41,7 +41,7 @@
 
   <!-- GENERATED PLAYLIST WILL BE SHOWN IN THIS SECTION -->
   <div v-if="toplist">
-    <div v-for="item in toplist" :key="item['rank']">
+    <div v-for="item in show" :key="item['rank']">
       <Images
       :imgSource="item['cover']"
       :artist="item['artist']"
@@ -50,7 +50,9 @@
       class="w-full sm:w-[75%] lg:w-1/2 border-1 grid grid-cols-3 border-green m-auto rounded-lg border-dotted my-4"
       />
     </div>
+    <button  @click="setShow()" class="absolute">X</button>
   </div>
+
 </template>
 
 <script lang="ts" setup>
@@ -61,6 +63,8 @@ import { useStore } from "../stores/Store";
 import { storeToRefs } from "pinia";
 
 const store = useStore();
+let { show } = storeToRefs(store);
+let mark:number = 0;
 const { date, toplist } = storeToRefs(store);
 
 const getChart = async () => {
@@ -72,7 +76,9 @@ const getChart = async () => {
 
   try {
     const response = await axios.request(options);
-    toplist.value = response.data.songs.slice(0, 10);
+    console.log(response.data.songs)
+    toplist.value = [...response.data.songs];
+    show.value = response.data.songs.slice(mark, mark + 10);
   } catch (error) {
     console.log("error getting chart", error);
   }
@@ -97,6 +103,12 @@ if (month < 10) month = "0" + month.toString();
 if (day < 10) day = "0" + day.toString();
 
 let maxDate: string = year + "-" + month + "-" + day;
+
+const setShow = () => {
+  mark += 10;
+  console.log(show.value)
+  console.log(toplist.value)
+}
 </script>
 
 <style></style>
