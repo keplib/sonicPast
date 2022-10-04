@@ -1,29 +1,16 @@
 <template>
   <Navbar />
 
-  <div class="create-controls flex flex-row justify-around lg:justify-between w-full lg:w-1/2 mx-auto">
-    <div class="datepicker-container my-10 text-left">
-      <p class="font-karla font-semibold text-lightest-slate mb-2 text-2xl">
-        PICK A DATE
-      </p>
-      <input
-        class="text-[#35302f]"
-        type="date"
-        min="1959-01-01"
-        aria-label="date input"
-        :max="maxDate"
-        v-model="date"
-      />
-      <br />
-    </div>
-    <div class="control-container my-10 text-left">
+  <div class="create-controls flex flex-col justify-around w-full sm:w-[75%] lg:w-1/2 mx-auto lg">
+ 
+    <div class="control-container px-4 py-2 text-left flex gap-6 justify-between w-50%">
       <div class="mb-5">
         <p class="font-karla font-semibold text-lightest-slate text-2xl">
           CREATE THE PLAYLIST
         </p>
         <button
           @click="getChart"
-          class="font-light font-ibm p-3 text-green border-green border-1 rounded mt-2 hover:bg-green/[0.2]"
+          class="font-light font-ibm p-3 px-4 text-green border-green border-1 rounded mt-2 hover:bg-green/[0.2]"
         >
           GENERATE
         </button>
@@ -34,12 +21,22 @@
         </p>
         <button
           @click="createPlaylist"
-          class="font-light font-ibm p-3 text-green border-green border-1 rounded mt-2 hover:bg-green/[0.2]"
+          class="font-light font-ibm p-3 px-4 text-green border-green border-1 rounded mt-2 hover:bg-green/[0.2]"
         >
           CREATE PLAYLIST
         </button>
       </div>
     </div>
+
+    <div class="datepicker-container px-4 text-left w-50%">
+      <p class="font-karla font-semibold text-lightest-slate mb-2 text-2xl">
+        PICK A DATE
+      </p>
+      <input class="text-[#35302f]" type="date" min="1959-01-01" aria-label="date input" :max="maxDate" v-model="date" />
+      <br />
+    </div>
+
+
   </div>
 
   <!-- GENERATED PLAYLIST WILL BE SHOWN IN THIS SECTION -->
