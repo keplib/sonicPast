@@ -143,7 +143,7 @@ if (day < 10) day = "0" + day.toString();
 let maxDate: string = year + "-" + month + "-" + day;
 
 const setList = (num: number) => {
-  if (mark.value + num == -10) {
+  if (mark.value + num == -10 || mark.value + num == 100) {
     return;
   }
   mark.value += num;
