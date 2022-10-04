@@ -37,14 +37,15 @@
       <div
         v-for="playlist in userPlaylists"
         :key="playlist ? playlist['id'] : playlist"
-        class="m-6"
       >
-        <Playlist
-          :playlistSource="playlist['uri']"
-          :id="playlist['id']"
-          :title="playlist['title']"
-          :isFav="playlist['favourite']"
-        />
+        <div v-if="!playlist['favourite']" class="m-6">
+          <Playlist
+            :playlistSource="playlist['uri']"
+            :id="playlist['id']"
+            :title="playlist['title']"
+            :isFav="playlist['favourite']"
+          />
+        </div>
       </div>
     </div>
   </div>

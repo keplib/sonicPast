@@ -19,6 +19,12 @@
       </h1>
       <button @click="toggleFav(id, isFav)">
         <span
+          v-if="isFav"
+          class="material-symbols-outlined text-green mr-2 mt-2 hover:text-pink hover:text-3xl"
+          >remove_circle</span
+        >
+        <span
+          v-else
           class="material-symbols-outlined text-green mr-2 mt-2 hover:text-pink hover:text-3xl"
           >add_circle</span
         >
