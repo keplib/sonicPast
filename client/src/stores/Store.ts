@@ -1,25 +1,21 @@
-import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { defineStore } from "pinia";
+import { ref } from "vue";
 
 interface Obj {
-    created_at: string;
-    favourite: boolean;
-    id: number;
-    title: string;
-    uri: string;
+  created_at: string;
+  favourite: boolean;
+  id: number;
+  title: string;
+  uri: string;
 }
-// interface songs {
-//     [key: string]: Obj;
-// }
 
+export const useStore = defineStore("Store", () => {
+  const date = ref<string>("");
+  const toplist = ref<any[]>([]);
+  const mark = ref<number>(0);
+  const userPlaylists = ref<Obj[] | null>([]);
+  const loggedIn = ref<boolean>(false);
+  const nav = ref<boolean>(false);
 
-export const useStore = defineStore('Store', () => {
-    const date = ref<string>('')
-    const toplist = ref<any>([])
-    const show = ref({})
-    const userPlaylists = ref<Obj[] | null>([])
-    const loggedIn = ref<boolean>(false)
-    const nav = ref<boolean>(false)
- 
-    return { date, toplist, userPlaylists, loggedIn, nav , show}
+  return { date, toplist, userPlaylists, loggedIn, nav, mark };
 });

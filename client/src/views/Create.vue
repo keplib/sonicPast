@@ -2,16 +2,13 @@
   <Navbar />
 
   <div class="create-controls flex flex-col justify-around w-full sm:w-[75%] lg:w-1/2 mx-auto lg">
- 
     <div class="control-container px-4 py-2 text-left flex gap-6 justify-between w-50%">
       <div class="mb-5">
         <p class="font-karla font-semibold text-lightest-slate text-2xl">
           CREATE THE PLAYLIST
         </p>
-        <button
-          @click="getChart"
-          class="font-light font-ibm p-3 px-4 min-w-[150px] min-h-[75px] text-green border-green border-1 rounded mt-2 hover:bg-green/[0.2]"
-        >
+        <button @click="getter()"
+          class="font-light font-ibm p-3 px-4 min-w-[150px] min-h-[75px] text-green border-green border-1 rounded mt-2 hover:bg-green/[0.2]">
           GENERATE
         </button>
       </div>
@@ -19,10 +16,8 @@
         <p class="font-karla font-semibold text-slate text-2xl">
           ADD IT TO YOUR SPOTIFY
         </p>
-        <button
-          @click="createPlaylist"
-          class="font-light font-ibm p-3 px-4 text-green border-green border-1 rounded mt-2 hover:bg-green/[0.2] min-w-[150px] min-h-[75px]"
-        >
+        <button @click="createList()"
+          class="font-light font-ibm p-3 px-4 text-green border-green border-1 rounded mt-2 hover:bg-green/[0.2] min-w-[150px] min-h-[75px]">
           CREATE PLAYLIST
         </button>
       </div>
@@ -32,67 +27,46 @@
       <p class="font-karla font-semibold text-lightest-slate mb-2 text-2xl">
         PICK A DATE
       </p>
-      <input class="text-[#35302f]" type="date" min="1959-01-01" aria-label="date input" :max="maxDate" v-model="date" />
+      <input class="text-[#35302f]" type="date" min="1959-01-01" aria-label="date input" :max="maxDate"
+        v-model="date" />
       <br />
     </div>
-
-
   </div>
 
   <!-- GENERATED PLAYLIST WILL BE SHOWN IN THIS SECTION -->
-  <div v-if="toplist">
-    <div v-for="item in show" :key="item['rank']">
-      <Images
-      :imgSource="item['cover']"
-      :artist="item['artist']"
-      :title="item['title']"
-      :rank="item['rank']"
-      class="w-full sm:w-[75%] lg:w-1/2 border-1 grid grid-cols-3 border-green m-auto rounded-lg border-dotted my-4"
-      />
+  <div v-if="toplist" class="flex flex-col items-center">
+    <div class="flex gap-5">
+      <button v-if="mark > 0" @click="setList(-10)" class=" -rotate-90 text-4xl text-green">&#10157;</button>
+      <button v-if="mark < 100" @click="setList(10)" class=" rotate-90 text-4xl text-green">&#10157;</button>
     </div>
-    <button  @click="setShow()" class="absolute">X</button>
+    <div v-for="item in toplist" :key="item['rank']">
+      <Images :imgSource="item['cover']" :artist="item['artist']" :title="item['title']" :rank="item['rank']"
+        class="w-full sm:w-[75%] lg:w-1/2 border-1 grid grid-cols-3 border-green m-auto rounded-lg border-dotted my-4" />
+    </div>
+    <div class="flex gap-5">
+      <button v-if="mark > 0" @click="setList(-10)" class=" -rotate-90 text-4xl text-green">&#10157;</button>
+      <button v-if="mark < 100" @click="setList(10)" class=" rotate-90 text-4xl text-green">&#10157;</button>
+    </div>
   </div>
 
 </template>
 
 <script lang="ts" setup>
-import axios from "axios";
 import Images from "../components/Images.vue";
 import Navbar from "../components/Navbar.vue";
 import { useStore } from "../stores/Store";
 import { storeToRefs } from "pinia";
+import { getChart, createPlaylist } from "./services/services";
+let fullList: any[] = []
 
 const store = useStore();
-let { show } = storeToRefs(store);
-let mark:number = 0;
-const { date, toplist } = storeToRefs(store);
 
-const getChart = async () => {
-  const options = {
-    method: "GET",
-    url: "http://localhost:3000/api/chart",
-    params: { date: date.value },
-  };
+const { date, toplist, mark } = storeToRefs(store);
 
-  try {
-    const response = await axios.request(options);
-    console.log(response.data.songs)
-    toplist.value = [...response.data.songs];
-    show.value = response.data.songs.slice(mark, mark + 10);
-  } catch (error) {
-    console.log("error getting chart", error);
-  }
-};
-
-const createPlaylist = () => {
-  try {
-    axios.post("http://localhost:3000/findTrack", {
-      date: date.value,
-      songs: toplist.value,
-    });
-  } catch (error) {
-    console.log("error creating playlist", error);
-  }
+const getter = async () => {
+  fullList = await getChart(date.value);
+  toplist.value = fullList.slice(0, 10);
+  mark.value = 0;
 };
 
 let dtToday: Date = new Date();
@@ -104,11 +78,22 @@ if (day < 10) day = "0" + day.toString();
 
 let maxDate: string = year + "-" + month + "-" + day;
 
-const setShow = () => {
-  mark += 10;
-  console.log(show.value)
-  console.log(toplist.value)
+
+const setList = (num: number) => {
+
+  if (mark.value + num == -10) {
+    return;
+  }
+  mark.value += num;
+  toplist.value = fullList.slice(mark.value, (mark.value + 10));
 }
+
+const createList = () => {
+  createPlaylist(date.value, toplist.value);
+}
+
 </script>
 
-<style></style>
+<style>
+
+</style>
