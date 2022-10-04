@@ -2,13 +2,13 @@
   <Navbar />
 
   <div class="create-controls flex flex-col justify-between w-full sm:w-[75%] lg:w-1/2 mx-auto lg">
-    <div class="control-container px-4 py-2 text-left flex gap-6 justify-between w-50%">
+    <div class="control-container py-2 text-left flex gap-6 justify-between">
       <div class="mb-5">
         <p class="font-karla font-semibold text-lightest-slate text-2xl">
           CREATE THE PLAYLIST
         </p>
         <button @click="getter()"
-          class="font-light font-ibm p-3 px-4 min-w-[150px] min-h-[75px] text-green border-green border-1 rounded mt-2 hover:bg-green/[0.2]">
+          class="font-light font-ibm p-3 min-w-[150px] min-h-[75px] text-green border-green border-1 rounded mt-2 hover:bg-green/[0.2]">
           GENERATE
         </button>
       </div>
@@ -36,16 +36,16 @@
   <!-- GENERATED PLAYLIST WILL BE SHOWN IN THIS SECTION -->
   <div v-if="toplist" class="flex flex-col items-center justify-around">
     <div class="flex gap-5 justify-end text-end">
-      <button v-if="mark > 0" @click="setList(-10)" class=" -rotate-90 text-3xl text-green hover:text-pink hover:text-4xl">&#10157;</button>
-      <button v-if="mark < 100" @click="setList(10)" class=" rotate-90 text-3xl text-green hover:text-pink hover:text-4xl">&#10157;</button>
+      <button v-if="mark > 0" @click="setList(-10)" class=" -rotate-90 text-3xl text-green hover:text-pink hover:text-3xl">&#10157;</button>
+      <button v-if="mark < 90" @click="setList(10)" class=" rotate-90 text-3xl text-green hover:text-pink hover:text-3xl">&#10157;</button>
     </div>
-    <div v-for="item in toplist" :key="item['rank']">
+    <div v-for="item in toplist" :key="item['rank']" class="h-full w-full sm:w-3/4 lg:w-1/2">
       <Images :imgSource="item['cover']" :artist="item['artist']" :title="item['title']" :rank="item['rank']"
-        class="w-full border-1 grid grid-cols-3 border-green m-auto rounded-lg border-dotted my-4 flex-grow-1 flex-shrink-0" />
+        class="w-full h-full border-1 grid grid-cols-3 border-green m-auto rounded-lg border-dotted my-4 flex-grow-1 flex-shrink-0" />
     </div>
     <div class="flex gap-5 justify-end text-end">
-      <button v-if="mark > 0" @click="setList(-10)" class=" -rotate-90 text-3xl text-green hover:text-pink hover:text-4xl">&#10157;</button>
-      <button v-if="mark < 100" @click="setList(10)" class=" rotate-90 text-3xl text-green hover:text-pink hover:text-4xl">&#10157;</button>
+      <button v-if="mark > 0" @click="setList(-10)" class=" -rotate-90 text-3xl text-green hover:text-pink hover:text-3xl">&#10157;</button>
+      <button v-if="mark < 90" @click="setList(10)" class=" rotate-90 text-3xl text-green hover:text-pink hover:text-3xl">&#10157;</button>
     </div>
   </div>
 
@@ -89,6 +89,7 @@ const setList = (num: number) => {
 }
 
 const createList = () => {
+
   createPlaylist(date.value, toplist.value);
 }
 

@@ -1,16 +1,16 @@
 <template>
-  <div id="info-container" class="flex flex-row">
+  <div id="info-container" class="flex flex-row h-full w-full">
     <div>
     <h3
-      v-if="rank === 10"
+      v-if="rank && rank < 10"
       class="text-green text-4xl tracking-wider font-jetbrains italic absolute"
     >
-      {{ rank }}.
+      0{{ rank }}.
     </h3>
     <h3 v-else
       class="text-green text-4xl tracking-wider font-jetbrains italic absolute"
     >
-      0{{ rank }}.
+      {{ rank }}.
     </h3>
       <img v-if="
                 imgSource !==
