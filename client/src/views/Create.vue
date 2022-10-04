@@ -1,15 +1,18 @@
 <template>
   <Navbar />
 
-  <div class="create-controls flex flex-col justify-around w-full sm:w-[75%] lg:w-1/2 mx-auto lg">
- 
-    <div class="control-container px-4 py-2 text-left flex gap-6 justify-between w-50%">
+  <div
+    class="create-controls flex flex-col justify-around w-full sm:w-[75%] lg:w-1/2 mx-auto lg"
+  >
+    <div
+      class="control-container px-4 py-2 text-left flex gap-6 justify-between w-50%"
+    >
       <div class="mb-5">
         <p class="font-karla font-semibold text-lightest-slate text-2xl">
           CREATE THE PLAYLIST
         </p>
         <button
-          @click="getChart"
+          @click="getter()"
           class="font-light font-ibm p-3 px-4 text-green border-green border-1 rounded mt-2 hover:bg-green/[0.2]"
         >
           GENERATE
@@ -20,7 +23,7 @@
           ADD IT TO YOUR SPOTIFY
         </p>
         <button
-          @click="createPlaylist"
+          @click="createPlaylist(date, toplist)"
           class="font-light font-ibm p-3 px-4 text-green border-green border-1 rounded mt-2 hover:bg-green/[0.2]"
         >
           CREATE PLAYLIST
@@ -32,61 +35,44 @@
       <p class="font-karla font-semibold text-lightest-slate mb-2 text-2xl">
         PICK A DATE
       </p>
-      <input class="text-[#35302f]" type="date" min="1959-01-01" aria-label="date input" :max="maxDate" v-model="date" />
+      <input
+        class="text-[#35302f]"
+        type="date"
+        min="1959-01-01"
+        aria-label="date input"
+        :max="maxDate"
+        v-model="date"
+      />
       <br />
     </div>
-
-
   </div>
 
   <!-- GENERATED PLAYLIST WILL BE SHOWN IN THIS SECTION -->
   <div v-if="toplist">
     <div v-for="item in toplist" :key="item['rank']">
       <Images
-      :imgSource="item['cover']"
-      :artist="item['artist']"
-      :title="item['title']"
-      :rank="item['rank']"
-      class="w-full sm:w-[75%] lg:w-1/2 border-1 grid grid-cols-3 border-green m-auto rounded-lg border-dotted my-4"
+        :imgSource="item['cover']"
+        :artist="item['artist']"
+        :title="item['title']"
+        :rank="item['rank']"
+        class="w-full sm:w-[75%] lg:w-1/2 border-1 grid grid-cols-3 border-green m-auto rounded-lg border-dotted my-4"
       />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import axios from "axios";
 import Images from "../components/Images.vue";
 import Navbar from "../components/Navbar.vue";
 import { useStore } from "../stores/Store";
 import { storeToRefs } from "pinia";
+import { getChart, createPlaylist } from "./services/services";
 
 const store = useStore();
 const { date, toplist } = storeToRefs(store);
 
-const getChart = async () => {
-  const options = {
-    method: "GET",
-    url: "http://localhost:3000/api/chart",
-    params: { date: date.value },
-  };
-
-  try {
-    const response = await axios.request(options);
-    toplist.value = response.data.songs.slice(0, 10);
-  } catch (error) {
-    console.log("error getting chart", error);
-  }
-};
-
-const createPlaylist = () => {
-  try {
-    axios.post("http://localhost:3000/findTrack", {
-      date: date.value,
-      songs: toplist.value,
-    });
-  } catch (error) {
-    console.log("error creating playlist", error);
-  }
+const getter = async () => {
+  toplist.value = await getChart(date.value);
 };
 
 let dtToday: Date = new Date();

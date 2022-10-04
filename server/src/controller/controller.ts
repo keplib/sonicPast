@@ -49,7 +49,7 @@ export const getApiChart = async (
     let date = req.query.date;
 
     if (!date) {
-      res.status(404).end('Invalid date');
+      res.status(404).end("Invalid date");
     } else {
       getChart("hot-100", `${date}`, (err: Error, chart: Obj) => {
         res.status(200).send(chart);
@@ -57,7 +57,7 @@ export const getApiChart = async (
     }
   } catch (error) {
     console.log(error);
-    res.status(404).send('Invalid request');
+    res.status(404).send("Invalid request");
   }
 };
 // Callback route for OAuth
@@ -105,9 +105,9 @@ const getCallback = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-interface song  {
-  title: string,
-  artist: string,
+interface song {
+  title: string;
+  artist: string;
 }
 
 const findTrack = async (req: Request, res: Response): Promise<void> => {
@@ -150,9 +150,12 @@ const findTrack = async (req: Request, res: Response): Promise<void> => {
 };
 
 const getPlaylists = async (req: Request, res: Response): Promise<void> => {
-  res.send("playlists route");
+  try {
+    res.send("playlists route");
+  } catch (error) {
+    console.log("error sending playlist route", error);
+  }
 };
-
 
 module.exports = {
   getApiChart,
