@@ -12,7 +12,7 @@ interface Obj {
 export const useStore = defineStore("Store", () => {
   const date = ref<string>("");
   const toplist = ref<any[]>([]);
-  const mark = ref<number>(0);
+  const mark = ref<number>(-15);
   const userPlaylists = ref<Obj[] | null>([]);
   const loggedIn = ref<boolean>(false);
   const nav = ref<boolean>(false);
