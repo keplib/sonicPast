@@ -1,6 +1,6 @@
 <template>
   <Navbar />
-  <h1>Create</h1>
+
   <div class="create-controls flex flex-row justify-around lg:justify-between w-full lg:w-1/2 mx-auto">
     <div class="datepicker-container my-10 text-left">
       <p class="font-karla font-semibold text-lightest-slate mb-2 text-2xl">

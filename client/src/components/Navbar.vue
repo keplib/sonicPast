@@ -30,18 +30,21 @@
         <nav class="font-ibm pr-48 p-0">
 
           <div class="absolute flex flex-col z-20 p-0 mt-12">
-            <router-link class="font-extralight text-green bg-navy border-green border-1 rounded hover:bg-green hover:text-white left-0 py-4 px-10"
+            <router-link
+              class="font-extralight text-green bg-navy border-green border-1 rounded hover:bg-green hover:text-white left-0 py-4 px-10"
               to="/create">Create
             </router-link>
-            <router-link class="font-extralight text-green bg-navy border-green border-1 rounded hover:bg-green hover:text-white left-0 py-4 px-10"
+            <router-link
+              class="font-extralight text-green bg-navy border-green border-1 rounded hover:bg-green hover:text-white left-0 py-4 px-10"
               to="/playlists">My Playlists
             </router-link>
-            <router-link class="font-extralight text-green bg-navy border-green border-1 rounded hover:bg-green hover:text-white left-0 py-4 px-10"
+            <router-link
+              class="font-extralight text-green bg-navy border-green border-1 rounded hover:bg-green hover:text-white left-0 py-4 px-10"
               to="/login">Logout
             </router-link>
 
           </div>
-      
+
         </nav>
 
       </div>
@@ -58,11 +61,7 @@ const store = useStore();
 let { nav } = storeToRefs(store);
 
 const togglenav = () => {
-  if (nav.value) {
-    nav.value = !nav.value;
-  } else {
-    nav.value = true;
-  }
+  nav.value = !nav.value;
 }
 
 
