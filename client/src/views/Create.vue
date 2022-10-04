@@ -74,7 +74,7 @@
         &#10157;
       </button>
       <button
-        v-if="mark < 90"
+        v-if="mark < 90 && mark != -15"
         @click="setList(10)"
         class="rotate-90 text-3xl text-green hover:text-pink hover:text-3xl"
       >
@@ -103,7 +103,7 @@
         &#10157;
       </button>
       <button
-        v-if="mark < 90"
+        v-if="mark < 90 && mark != -15"
         @click="setList(10)"
         class="rotate-90 text-3xl text-green hover:text-pink hover:text-3xl"
       >
