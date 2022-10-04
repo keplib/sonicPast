@@ -37,15 +37,14 @@
       <div
         v-for="playlist in userPlaylists"
         :key="playlist ? playlist['id'] : playlist"
+        class="m-6"
       >
-        <div v-if="!playlist['favourite']" class="m-6">
-          <Playlist
-            :playlistSource="playlist['uri']"
-            :id="playlist['id']"
-            :title="playlist['title']"
-            :isFav="playlist['favourite']"
-          />
-        </div>
+        <Playlist
+          :playlistSource="playlist['uri']"
+          :id="playlist['id']"
+          :title="playlist['title']"
+          :isFav="playlist['favourite']"
+        />
       </div>
     </div>
   </div>
@@ -64,7 +63,6 @@ const { userPlaylists } = storeToRefs(store);
 const getData = async () => {
   try {
     const { data, error } = await supabase.from("playlists_db").select();
-    console.log("u", userPlaylists);
 
     userPlaylists.value = data;
     console.log(userPlaylists.value);
