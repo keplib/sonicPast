@@ -1,7 +1,7 @@
 <template>
   <Navbar />
 
-  <div class="create-controls flex flex-col justify-around w-full sm:w-[75%] lg:w-1/2 mx-auto lg">
+  <div class="create-controls flex flex-col justify-between w-full sm:w-[75%] lg:w-1/2 mx-auto lg">
     <div class="control-container px-4 py-2 text-left flex gap-6 justify-between w-50%">
       <div class="mb-5">
         <p class="font-karla font-semibold text-lightest-slate text-2xl">
@@ -34,18 +34,18 @@
   </div>
 
   <!-- GENERATED PLAYLIST WILL BE SHOWN IN THIS SECTION -->
-  <div v-if="toplist" class="flex flex-col items-center">
-    <div class="flex gap-5">
-      <button v-if="mark > 0" @click="setList(-10)" class=" -rotate-90 text-4xl text-green">&#10157;</button>
-      <button v-if="mark < 100" @click="setList(10)" class=" rotate-90 text-4xl text-green">&#10157;</button>
+  <div v-if="toplist" class="flex flex-col items-center justify-around">
+    <div class="flex gap-5 justify-end text-end">
+      <button v-if="mark > 0" @click="setList(-10)" class=" -rotate-90 text-3xl text-green hover:text-pink hover:text-4xl">&#10157;</button>
+      <button v-if="mark < 100" @click="setList(10)" class=" rotate-90 text-3xl text-green hover:text-pink hover:text-4xl">&#10157;</button>
     </div>
     <div v-for="item in toplist" :key="item['rank']">
       <Images :imgSource="item['cover']" :artist="item['artist']" :title="item['title']" :rank="item['rank']"
-        class="w-full sm:w-[75%] lg:w-1/2 border-1 grid grid-cols-3 border-green m-auto rounded-lg border-dotted my-4" />
+        class="w-full border-1 grid grid-cols-3 border-green m-auto rounded-lg border-dotted my-4 flex-grow-1 flex-shrink-0" />
     </div>
-    <div class="flex gap-5">
-      <button v-if="mark > 0" @click="setList(-10)" class=" -rotate-90 text-4xl text-green">&#10157;</button>
-      <button v-if="mark < 100" @click="setList(10)" class=" rotate-90 text-4xl text-green">&#10157;</button>
+    <div class="flex gap-5 justify-end text-end">
+      <button v-if="mark > 0" @click="setList(-10)" class=" -rotate-90 text-3xl text-green hover:text-pink hover:text-4xl">&#10157;</button>
+      <button v-if="mark < 100" @click="setList(10)" class=" rotate-90 text-3xl text-green hover:text-pink hover:text-4xl">&#10157;</button>
     </div>
   </div>
 
