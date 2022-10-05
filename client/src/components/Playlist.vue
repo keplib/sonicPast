@@ -75,7 +75,6 @@ const toggleFav = async (
               .select();
 
             userPlaylists.value = data;
-            console.log(userPlaylists.value);
           } catch (error) {
             console.log("error getting favourite data from supabase", error);
           }
