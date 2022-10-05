@@ -19,7 +19,7 @@
       >
         {{ title }}
       </h1>
-      <button @click="toggleFav(id, isFav)">
+      <button @click="toggleFav(id, isFav, title)">
         <span
           v-if="isFav"
           class="material-symbols-outlined text-green mr-2 mt-2 hover:text-pink hover:text-3xl"
@@ -51,32 +51,51 @@ const props = defineProps({
   isFav: Boolean,
 });
 
-const toggleFav = async (item: number | undefined, fav: boolean) => {
-  try {
-    const { data, error } = await supabase
-      .from("playlists_db")
-      .update({ favourite: !fav })
-      .match({ id: item });
+const toggleFav = async (
+  item: number | undefined,
+  fav: boolean,
+  title: string | undefined
+) => {
+  if (title) {
+    document.getElementById(title)?.classList.remove("animate-fade-in");
+    document.getElementById(title)?.classList.add("animate-fade-out");
+    setTimeout(async () => {
+      document.getElementById(title)?.classList.add("hidden");
 
-    const getData = async () => {
       try {
-        const { data, error } = await supabase.from("playlists_db").select();
+        const { data, error } = await supabase
+          .from("playlists_db")
+          .update({ favourite: !fav })
+          .match({ id: item });
 
-        userPlaylists.value = data;
-        console.log(userPlaylists.value);
+        const getData = async () => {
+          try {
+            const { data, error } = await supabase
+              .from("playlists_db")
+              .select();
+
+            userPlaylists.value = data;
+            console.log(userPlaylists.value);
+          } catch (error) {
+            console.log("error getting favourite data from supabase", error);
+          }
+        };
+
+        getData();
       } catch (error) {
-        console.log("error getting favourite data from supabase", error);
+        console.log("error toggling favourite", error);
       }
-    };
-
-    getData();
-  } catch (error) {
-    console.log("error toggling favourite", error);
+    }, 1000);
   }
 };
 const iframeLoading = (title: string | undefined) => {
-  document.getElementById(title).style.display = "block";
-  document.getElementById("loadingIcon1").style.display = "none";
+  if (title) {
+    document.getElementById(title)?.classList.remove("animate-fade-out");
+    document.getElementById(title)?.classList.remove("hidden");
+    document.getElementById(title)?.classList.add("block");
+    document.getElementById(title)?.classList.add("animate-fade-in");
+  }
+  document.getElementById("loadingIcon1")?.classList.add("hidden");
 };
 </script>
 
