@@ -6,6 +6,7 @@ export interface Obj {
   favourite: boolean;
   id: number;
   title: string;
+  artist: string;
   uri: string;
 }
 
@@ -16,7 +17,8 @@ export const useStore = defineStore("Store", () => {
   const userPlaylists = ref<Obj[] | null>([]);
   const loggedIn = ref<boolean>(false);
   const nav = ref<boolean>(false);
-  const selected = ref<boolean>(false);
+  const showAdd = ref<boolean>(false);
+  const selected = ref<any[]>([]);
 
-  return { date, toplist, userPlaylists, loggedIn, nav, mark, selected };
+  return { date, toplist, userPlaylists, loggedIn, nav, mark, selected, showAdd };
 });
