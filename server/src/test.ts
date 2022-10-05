@@ -1,4 +1,5 @@
 
+import { response } from 'express';
 import request from 'supertest';
 import { createApp, server } from './index';
 
@@ -22,8 +23,10 @@ describe('Controller getApiChart', () => {
     describe("with correct params", () => {
         it('should get list', async () => {
             await request(app).get("/api/chart").query({ date: '2016-08-27' })
-            .expect(200)
+                .expect(200)
+                // .expect(response.json)
         })
+        console.log(response);
     });
 
     describe("if no date is provided", () => {

@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-interface Obj {
+export interface Obj {
   created_at: string;
   favourite: boolean;
   id: number;

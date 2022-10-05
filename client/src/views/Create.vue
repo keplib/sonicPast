@@ -110,8 +110,9 @@ import Navbar from "../components/Navbar.vue";
 import { useStore } from "../stores/Store";
 import { storeToRefs } from "pinia";
 import { getChart, createPlaylist } from "./services/services";
+import { Obj } from "../stores/Store"
 
-let fullList: any[] = [];
+let fullList: Obj[] = [];
 
 const store = useStore();
 
@@ -142,6 +143,8 @@ const setList = (num: number) => {
 };
 
 const createList = () => {
+
+  // Api call for server and spotify
   createPlaylist(date.value, toplist.value);
 };
 </script>
