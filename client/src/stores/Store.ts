@@ -16,6 +16,7 @@ export const useStore = defineStore("Store", () => {
   const userPlaylists = ref<Obj[] | null>([]);
   const loggedIn = ref<boolean>(false);
   const nav = ref<boolean>(false);
+  const selected = ref<boolean>(false);
 
-  return { date, toplist, userPlaylists, loggedIn, nav, mark };
+  return { date, toplist, userPlaylists, loggedIn, nav, mark, selected };
 });

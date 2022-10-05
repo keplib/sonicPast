@@ -40,7 +40,7 @@
       <button v-if="mark < 90" @click="setList(10)" class=" rotate-90 text-3xl text-green hover:text-pink hover:text-3xl">&#10157;</button>
     </div>
     <div v-for="item in toplist" :key="item['rank']" class="h-full w-full sm:w-3/4 lg:w-1/2">
-      <Images :imgSource="item['cover']" :artist="item['artist']" :title="item['title']" :rank="item['rank']"
+      <Images :imgSource="item['cover']" :artist="item['artist']" :title="item['title']" :rank="item['rank']" :selected="item['selected']"
         class="w-full h-full border-1 grid grid-cols-3 border-green m-auto rounded-lg border-dotted my-4 flex-grow-1 flex-shrink-0" />
     </div>
     <div class="flex gap-5 justify-end text-end">
@@ -61,7 +61,7 @@ let fullList: any[] = []
 
 const store = useStore();
 
-const { date, toplist, mark } = storeToRefs(store);
+const { date, toplist, mark, selected } = storeToRefs(store);
 
 const getter = async () => {
   fullList = await getChart(date.value);

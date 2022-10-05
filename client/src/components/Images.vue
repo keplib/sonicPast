@@ -48,6 +48,7 @@ const props = defineProps({
   artist: String,
   title: String,
   rank: Number,
+  selected: Boolean,
 });
 </script>
 
