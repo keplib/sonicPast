@@ -85,14 +85,13 @@ const toggleFav = async (
       } catch (error) {
         console.log("error toggling favourite", error);
       }
-    }, 1000);
+    }, 950);
   }
 };
 const iframeLoading = (title: string | undefined) => {
   if (title) {
     document.getElementById(title)?.classList.remove("animate-fade-out");
     document.getElementById(title)?.classList.remove("hidden");
-    document.getElementById(title)?.classList.add("block");
     document.getElementById(title)?.classList.add("animate-fade-in");
   }
   document.getElementById("loadingIcon1")?.classList.add("hidden");
