@@ -44,13 +44,18 @@ describe("Create page", () => {
   it("should have logo", () => {
     cy.contains("soni");
   });
-  it("should generate songs for playlist", () => {
+  it("should generate songs for playlist and be able to scroll", () => {
     cy.get("input")
       .type("1970-10-06")
       .get(".mb-5 > .font-light")
       .click()
       .then(() => {
         cy.contains("NEIL DIAMOND");
+        cy.get(":nth-child(1) > .rotate-90")
+          .click()
+          .then(() => {
+            cy.contains("11.");
+          });
       });
   });
 });
