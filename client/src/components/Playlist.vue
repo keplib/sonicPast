@@ -85,7 +85,7 @@ const toggleFav = async (
       } catch (error) {
         console.log("error toggling favourite", error);
       }
-    }, 990);
+    }, 490);
   }
 };
 const iframeLoading = (title: string | undefined) => {
@@ -95,7 +95,7 @@ const iframeLoading = (title: string | undefined) => {
     document.getElementById(title)?.classList.add("animate-fade-in");
     setTimeout(() => {
       document.getElementById(title)?.classList.remove("animate-fade-in");
-    }, 1000);
+    }, 500);
   }
   document.getElementById("loadingIcon1")?.classList.add("hidden");
 };
