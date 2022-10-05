@@ -1,9 +1,11 @@
 <template>
   <div
+    :id="title"
     role="banner"
-    class="card-component border border-5 border-dotted border-green bg-[rgb(10 25 47)] shadow-lg shadow-lightest-navy rounded-lg"
+    class="hidden card-component border border-5 border-dotted border-green bg-[rgb(10 25 47)] shadow-lg shadow-lightest-navy rounded-lg"
   >
     <iframe
+      @load="iframeLoading(title)"
       :src="playlistSource"
       width="300"
       height="300"
@@ -71,6 +73,10 @@ const toggleFav = async (item: number | undefined, fav: boolean) => {
   } catch (error) {
     console.log("error toggling favourite", error);
   }
+};
+const iframeLoading = (title: string | undefined) => {
+  document.getElementById(title).style.display = "block";
+  document.getElementById("loadingIcon1").style.display = "none";
 };
 </script>
 
