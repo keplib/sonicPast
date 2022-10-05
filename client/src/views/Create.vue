@@ -113,7 +113,6 @@ import { getChart, createPlaylist } from "./services/services";
 import { Obj } from "../stores/Store"
 
 let fullList: Obj[] = [];
-
 const store = useStore();
 
 const { date, toplist, mark } = storeToRefs(store);
