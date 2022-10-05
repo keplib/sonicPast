@@ -1,12 +1,10 @@
 <template>
   <Navbar />
-
   <h1
     class="text-left text-slate tracking-wide ml-6 font-bold text-3xl font-karla mt-6"
   >
     My favourites
   </h1>
-
   <div v-if="userPlaylists && userPlaylists.length > 0">
     <!-- PLAYLIST TO SHOW USER'S FAVOURITES -->
     <div class="playlist-conatiner flex flex-row overflow-auto scrollbar-hide">
