@@ -61,6 +61,7 @@ const toggleFav = async (
     document.getElementById(title)?.classList.add("animate-fade-out");
     setTimeout(async () => {
       document.getElementById(title)?.classList.add("hidden");
+      document.getElementById(title)?.classList.remove("animate-fade-out");
 
       try {
         const { data, error } = await supabase
@@ -84,7 +85,7 @@ const toggleFav = async (
       } catch (error) {
         console.log("error toggling favourite", error);
       }
-    }, 950);
+    }, 990);
   }
 };
 const iframeLoading = (title: string | undefined) => {
@@ -92,6 +93,9 @@ const iframeLoading = (title: string | undefined) => {
     document.getElementById(title)?.classList.remove("animate-fade-out");
     document.getElementById(title)?.classList.remove("hidden");
     document.getElementById(title)?.classList.add("animate-fade-in");
+    setTimeout(() => {
+      document.getElementById(title)?.classList.remove("animate-fade-in");
+    }, 1000);
   }
   document.getElementById("loadingIcon1")?.classList.add("hidden");
 };
