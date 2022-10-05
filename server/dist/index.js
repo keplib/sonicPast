@@ -18,6 +18,6 @@ const createApp = () => {
 exports.createApp = createApp;
 const app = (0, exports.createApp)();
 // Running the server
-exports.server = app.listen("3000", () => {
+exports.server = app.listen(3000, () => {
     console.log("Server is up and running! ");
 });

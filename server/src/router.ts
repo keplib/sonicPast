@@ -1,8 +1,7 @@
 import { Router } from "express";
+import controller from "./controller/controller";
 
-// const Router = require("express");
 const router:Router = Router();
-const controller = require("./controller/controller");
 
 router.get("/login", controller.getLogin);
 router.get("/api/chart", controller.getApiChart);

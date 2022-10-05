@@ -57,7 +57,7 @@ export const getApiChart = async (
     }
   } catch (error) {
     console.log(error);
-    res.status(404).send("Invalid request");
+    res.status(500).send("Api Error");
   }
 };
 // Callback route for OAuth
@@ -157,7 +157,7 @@ const getPlaylists = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-module.exports = {
+export default {
   getApiChart,
   getLogin,
   getPlaylists,

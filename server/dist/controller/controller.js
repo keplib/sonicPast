@@ -45,7 +45,7 @@ const getApiChart = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     try {
         let date = req.query.date;
         if (!date) {
-            res.status(404).end('Invalid date');
+            res.status(404).end("Invalid date");
         }
         else {
             getChart("hot-100", `${date}`, (err, chart) => {
@@ -55,7 +55,7 @@ const getApiChart = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
     catch (error) {
         console.log(error);
-        res.status(404).send('Invalid request');
+        res.status(500).send("Api Error");
     }
 });
 exports.getApiChart = getApiChart;
@@ -129,9 +129,14 @@ const findTrack = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 const getPlaylists = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send("playlists route");
+    try {
+        res.send("playlists route");
+    }
+    catch (error) {
+        console.log("error sending playlist route", error);
+    }
 });
-module.exports = {
+exports.default = {
     getApiChart: exports.getApiChart,
     getLogin,
     getPlaylists,

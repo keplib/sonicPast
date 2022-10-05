@@ -27,8 +27,11 @@ describe('Index', () => {
 describe('Controller getApiChart', () => {
     describe("with correct params", () => {
         it('should get list', () => __awaiter(void 0, void 0, void 0, function* () {
-            yield (0, supertest_1.default)(app).get("/api/chart").query({ date: '2016-08-27' })
-                .expect(200);
+            const response = yield (0, supertest_1.default)(app).get("/api/chart").query({ date: '2016-08-27' });
+            expect(response.status).toEqual(200);
+            expect(response.body.songs.every((element) => {
+                return element.title && element.artist && element.rank;
+            })).toBe(true);
         }));
     });
     describe("if no date is provided", () => {

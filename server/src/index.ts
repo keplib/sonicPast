@@ -15,6 +15,6 @@ export const createApp = ():Express => {
 const app = createApp();
 
 // Running the server
-export const server = app.listen("3000", () => {
+export const server = app.listen(3000, () => {
     console.log("Server is up and running! ")
 });

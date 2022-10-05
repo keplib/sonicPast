@@ -64,10 +64,7 @@ const { userPlaylists } = storeToRefs(store);
 const getData = async () => {
   try {
     const { data, error } = await supabase.from("playlists_db").select();
-    console.log("u", userPlaylists);
-
     userPlaylists.value = data;
-    console.log(userPlaylists.value);
   } catch (error) {
     console.log("error getting playlist data", error);
   }
