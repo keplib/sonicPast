@@ -7,7 +7,7 @@
   </h1>
   <div v-if="userPlaylists && userPlaylists.length > 0">
     <!-- PLAYLIST TO SHOW USER'S FAVOURITES -->
-    <div class="playlist-conatiner flex flex-row overflow-auto scrollbar-hide">
+    <div class="playlist-conatiner flex flex-row overflow-auto scrollbar-hide min-h-[400px]">
       <div id="loadingIcon1">
         <svg
           aria-hidden="true"

@@ -38,7 +38,7 @@
       </p>
     </div>
     <button
-      v-if="selected.includes(props.title)"
+      v-if="selected.includes(temp)"
       @click="toggleSelect()"
       class="absolute self-end justify-self-end text-2xl text-green p-2"
     >
@@ -56,7 +56,7 @@
 
 <script setup lang="ts">
 import { useStore } from "../stores/Store";
-import { defineProps } from "vue";
+import { defineProps, toRaw } from "vue";
 import { storeToRefs } from "pinia";
 const store = useStore();
 const { selected } = storeToRefs(store);
@@ -68,17 +68,21 @@ const props = defineProps({
   rank: Number,
   selected: Boolean,
 });
+const temp = { title: props.title, artist: props.artist };
 
 const toggleSelect = () => {
-  if (selected.value.includes(props.title)) {
-    const temp = props.title;
-    selected.value.splice(selected.value.indexOf(temp), 1);
-  } else {
-    selected.value = [...selected.value, props.title];
-  }
 
-  console.log(selected.value);
+  let found = selected.value.find(e => {
+    return e.title == temp.title;
+  })
+
+  if (found) {
+    selected.value.splice(selected.value.indexOf(found), 1);
+  } else {
+    selected.value.push(temp);
+  }
 };
+
 </script>
 
 <style></style>

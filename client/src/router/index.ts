@@ -3,6 +3,7 @@ import Create from "../views/Create.vue";
 import Playlists from "../views/Playlists.vue";
 import App from "../App.vue";
 import Login from "../views/Login.vue";
+import Home from "../views/Home.vue";
 
 interface routes {
   path: string;
@@ -13,7 +14,7 @@ const routes = [
   {
     path: "/",
     name: "app",
-    component: App,
+    component: Home,
   },
   {
     path: "/create",

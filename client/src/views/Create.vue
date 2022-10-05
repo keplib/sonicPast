@@ -7,13 +7,13 @@
     <!-- Create pop-up -->
     <div
       v-if="showAdd"
-      class="flex flex-col h-full w-full absolute w-full h-full bg-navy border border-color-pink text-green rounded-md"
+      class="flex flex-col h-full w-full absolute bg-navy border border-color-pink text-green rounded-md"
     >
       <h1 class="text-xl pb-2 border-b"><b>Adding:</b></h1>
       <div class="flex flex-col overflow-auto scrollbar-hide h-full w-full">
-        <div v-for="song in selected" class="">
-          <h2>
-            <i> {{ song }}</i>
+        <div v-for="song in selected">
+          <h2  class="text-lg">
+            <i> {{ song.title }} by: {{song.artist}}</i>
           </h2>
         </div>
       </div>
@@ -189,6 +189,8 @@ const createList = () => {
   let send = fullList.filter((e) => selected.value.includes(e.title));
   console.log(send);
   send = [];
+
+  // Cant test this so commented out
   // createPlaylist(date.value, send)
 };
 
