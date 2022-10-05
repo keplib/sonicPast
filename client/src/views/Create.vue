@@ -5,12 +5,23 @@
 
   <div class="create-controls flex flex-col justify-between w-full sm:w-[75%] lg:w-1/2 mx-auto lg relative">
 
-    <div v-if="showAdd" class="w-full h-full bg-pink absolute flex">
-      <h1>Adding</h1>
-      <div v-for="song in selected">
-        <h2>{{song}}</h2>
+    <!-- Create pop-up -->
+    <div v-if="showAdd" class="flex flex-col h-full w-full absolute">
+      <div  class="w-full h-full bg-navy border border-color-pink flex flex-col overflow-auto">
+        <button @click="toggleAdding()" class="self-end fixed">X</button>
+        <h1 class="text-xl pb-2">Adding:</h1>
+        <div v-for="song in selected" class="">
+          <h2>{{song}}</h2>
+        </div>
       </div>
-      <button @click="createList()">XXX</button>
+      <div class=" bg-navy flex">
+        <button @click="createList()"
+          class="w-full h-[40px] font-light font-ibm text-green border-green border-1 rounded hover:bg-green/[0.2]">Create
+        </button>
+        <button @click="toggleAdding()"
+          class="w-full h-[40px] font-light font-ibm text-green border-green border-1 rounded hover:bg-green/[0.2]">Cancel
+        </button>
+      </div>
     </div>
 
     <div class="control-container py-2 text-left flex gap-6 justify-between">
@@ -128,11 +139,12 @@ const createList = () => {
   let send = fullList.filter(e => selected.value.includes(e.title));
   console.log(send);
   send = [];
+  // createPlaylist(date.value, send)
 };
 
 const toggleAdding = () => {
   if (selected.value.length) {
-    showAdd.value = true;
+    showAdd.value = !showAdd.value;
   }
 
 }
