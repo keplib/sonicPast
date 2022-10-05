@@ -22,7 +22,8 @@ const getChart = async (date: string) => {
 };
 
 const createPlaylist = (date: string, toplist: Obj[] | []) => {
-  console.log(toplist)
+  console.log('hi');
+  console.log(toplist);
   try {
     axios.post("http://localhost:3000/findTrack", {
       date: date,

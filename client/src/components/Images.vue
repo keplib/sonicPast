@@ -68,7 +68,7 @@ const props = defineProps({
   rank: Number,
   selected: Boolean,
 });
-const temp = { title: props.title, artist: props.artist };
+const temp = { rank: props.rank, cover:props.imgSource,  title: props.title, artist: props.artist };
 
 const toggleSelect = () => {
 

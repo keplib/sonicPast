@@ -13,7 +13,7 @@
       <div class="flex flex-col overflow-auto scrollbar-hide h-full w-full">
         <div v-for="song in selected">
           <h2  class="text-lg">
-            <i> {{ song.title }} by: {{song.artist}}</i>
+            <i> {{ song.title }} by: {{song.artist ? song.artist : 'you'}}</i>
           </h2>
         </div>
       </div>
@@ -186,12 +186,13 @@ const setList = (num: number) => {
 
 const createList = () => {
   // Api call for server and spotify
-  let send = fullList.filter((e) => selected.value.includes(e.title));
-  console.log(send);
-  send = [];
+  createPlaylist(date.value, selected.value)
 
-  // Cant test this so commented out
-  // createPlaylist(date.value, send)
+  selected.value = [{ title: "Playlist created" }];
+  setTimeout(() => {
+    selected.value = [];
+    showAdd.value = false;
+  },2000)
 };
 
 const toggleAdding = () => {
