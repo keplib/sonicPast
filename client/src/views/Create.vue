@@ -3,12 +3,12 @@
 
 
 
-  <div class="create-controls flex flex-col justify-between w-full sm:w-[75%] lg:w-1/2 mx-auto lg relative">
+  <div class="create-controls flex flex-col justify-between w-full sm:w-[75%] lg:w-1/2 mx-auto lg relative my-2 py-2">
 
     <!-- Create pop-up -->
     <div v-if="showAdd" class="flex flex-col h-full w-full absolute">
       <div  class="w-full h-full bg-navy border border-color-pink flex flex-col overflow-auto">
-        <button @click="toggleAdding()" class="self-end fixed">X</button>
+        <button @click="toggleAdding()" class="self-end absolute">X</button>
         <h1 class="text-xl pb-2">Adding:</h1>
         <div v-for="song in selected" class="">
           <h2>{{song}}</h2>
@@ -20,6 +20,9 @@
         </button>
         <button @click="toggleAdding()"
           class="w-full h-[40px] font-light font-ibm text-green border-green border-1 rounded hover:bg-green/[0.2]">Cancel
+        </button>
+        <button @click="clear()"
+          class="w-full h-[40px] font-light font-ibm text-green border-green border-1 rounded hover:bg-green/[0.2]">Clear
         </button>
       </div>
     </div>
@@ -135,7 +138,6 @@ const setList = (num: number) => {
 
 const createList = () => {
   // Api call for server and spotify
-  console.log('click')
   let send = fullList.filter(e => selected.value.includes(e.title));
   console.log(send);
   send = [];
@@ -146,7 +148,12 @@ const toggleAdding = () => {
   if (selected.value.length) {
     showAdd.value = !showAdd.value;
   }
+}
 
+const clear = () => {
+  selected.value = [];
+  toggleAdding();
+  showAdd.value = false;
 }
 
 </script>
