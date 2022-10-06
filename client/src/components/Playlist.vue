@@ -14,11 +14,12 @@
     >
     </iframe>
     <div class="flex flex-row justify-between">
-      <h1
-        class="font-fira font-normal text-green italic text-xl mt-5 mb-5 ml-5 text-left"
-      >
-        {{ title }}
-      </h1>
+      <input
+        v-model="myInput"
+        @keyup.lazy.enter="titleChange(id, myInput, $event)"
+        :placeholder="title"
+        class="bg-navy w-[15rem] placeholder-green font-fira font-normal text-green italic text-xl mt-5 mb-5 ml-5 text-left"
+      />
       <button @click="toggleFav(id, isFav, title)">
         <span
           v-if="isFav"
@@ -49,8 +50,17 @@ const props = defineProps({
   title: String,
   id: Number,
   isFav: Boolean,
+  myInput: String,
 });
+const getData = async () => {
+  try {
+    const { data, error } = await supabase.from("playlists_db").select();
 
+    userPlaylists.value = data;
+  } catch (error) {
+    console.log("error getting favourite data from supabase", error);
+  }
+};
 const toggleFav = async (
   item: number | undefined,
   fav: boolean,
@@ -68,19 +78,6 @@ const toggleFav = async (
           .from("playlists_db")
           .update({ favourite: !fav })
           .match({ id: item });
-
-        const getData = async () => {
-          try {
-            const { data, error } = await supabase
-              .from("playlists_db")
-              .select();
-
-            userPlaylists.value = data;
-          } catch (error) {
-            console.log("error getting favourite data from supabase", error);
-          }
-        };
-
         getData();
       } catch (error) {
         console.log("error toggling favourite", error);
@@ -98,6 +95,23 @@ const iframeLoading = (title: string | undefined) => {
     }, 500);
   }
   document.getElementById("loadingIcon1")?.classList.add("hidden");
+};
+
+const titleChange = async (
+  item: number | undefined,
+  input: string | undefined,
+  event: Event
+) => {
+  try {
+    const { data, error } = await supabase
+      .from("playlists_db")
+      .update({ title: input })
+      .match({ id: item });
+    getData();
+  } catch (error) {
+    console.log("error toggling favourite", error);
+  }
+  event.target.blur();
 };
 </script>
 
