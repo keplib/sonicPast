@@ -12,8 +12,8 @@
       <h1 class="text-xl pb-2 border-b"><b>Adding:</b></h1>
       <div class="flex flex-col overflow-auto scrollbar-hide h-full w-full">
         <div v-for="song in selected">
-          <h2  class="text-lg">
-            <i> {{ song.title }} by: {{song.artist ? song.artist : 'you'}}</i>
+          <h2 class="text-lg">
+            <i> {{ song.title }} by: {{ song.artist ? song.artist : "you" }}</i>
           </h2>
         </div>
       </div>
@@ -157,10 +157,6 @@ import { getChart, createPlaylist } from "./services/services";
 import { Obj } from "../stores/Store";
 import { getMe } from "./services/services";
 
-(() => {
-  console.log('hi');
-})
-
 const store = useStore();
 const { date, toplist, mark, selected, showAdd } = storeToRefs(store);
 let fullList: Obj[] = [];
@@ -171,7 +167,6 @@ const getter = async () => {
   toplist.value = fullList.slice(0, 10);
   mark.value = 0;
 };
-
 
 let dtToday: Date = new Date();
 let month: number | string = dtToday.getMonth() + 1;
@@ -192,13 +187,13 @@ const setList = (num: number) => {
 
 const createList = () => {
   // Api call for server and spotify
-  createPlaylist(date.value, selected.value)
+  createPlaylist(date.value, selected.value);
 
   selected.value = [{ title: "Playlist created" }];
   setTimeout(() => {
     selected.value = [];
     showAdd.value = false;
-  },2000)
+  }, 2000);
 };
 
 const toggleAdding = () => {

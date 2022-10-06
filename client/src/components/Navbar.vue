@@ -29,9 +29,9 @@
         @click="resetLoadingIcon()"
         class="font-extralight p-1 md:p-3 mx-2 text-green border-green border-1 rounded hover:bg-green/[0.3]"
         to="/login"
-        >Logout
+        ><span v-if="loggedIn">Login</span>
+        <span v-else @click="setLogOut()">Logout</span>
       </router-link>
-      <button @click="logOut()">X</button>
     </nav>
 
     <!-- Mobile nav -->
@@ -72,9 +72,9 @@
               class="font-extralight text-green bg-navy border-green border-1 rounded hover:bg-green hover:text-white left-0 py-4 px-10"
               to="/login"
               @click="togglenav(), resetLoadingIcon()"
-              >Logout
+              ><span v-if="loggedIn">Login</span>
+              <span v-else @click="setLogOut()">Logout</span>
             </router-link>
-            
           </div>
         </nav>
       </div>
@@ -87,16 +87,21 @@ import { useStore } from "../stores/Store";
 import { storeToRefs } from "pinia";
 import { getMe, logOut } from "@/views/services/services";
 const store = useStore();
-let { nav } = storeToRefs(store);
+let { nav, loggedIn } = storeToRefs(store);
 
 const togglenav = () => {
   nav.value = !nav.value;
 };
+
 const resetLoadingIcon = () => {
+  console.log(loggedIn.value);
   document.getElementById("loadingIcon1")?.classList.remove("hidden");
 };
 
-// const me = () => {}
+const setLogOut = () => {
+  logOut();
+  loggedIn.value = false;
+};
 </script>
 
 <style></style>
