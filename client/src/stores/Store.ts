@@ -19,6 +19,17 @@ export const useStore = defineStore("Store", () => {
   const nav = ref<boolean>(false);
   const showAdd = ref<boolean>(false);
   const selected = ref<any[]>([]);
+  const myInput = ref<string>("");
 
-  return { date, toplist, userPlaylists, loggedIn, nav, mark, selected, showAdd };
+  return {
+    date,
+    toplist,
+    userPlaylists,
+    loggedIn,
+    nav,
+    mark,
+    selected,
+    showAdd,
+    myInput,
+  };
 });
