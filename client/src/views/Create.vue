@@ -155,6 +155,11 @@ import { useStore } from "../stores/Store";
 import { storeToRefs } from "pinia";
 import { getChart, createPlaylist } from "./services/services";
 import { Obj } from "../stores/Store";
+import { getMe } from "./services/services";
+
+(() => {
+  console.log('hi');
+})
 
 const store = useStore();
 const { date, toplist, mark, selected, showAdd } = storeToRefs(store);
@@ -166,6 +171,7 @@ const getter = async () => {
   toplist.value = fullList.slice(0, 10);
   mark.value = 0;
 };
+
 
 let dtToday: Date = new Date();
 let month: number | string = dtToday.getMonth() + 1;

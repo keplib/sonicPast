@@ -31,6 +31,7 @@
         to="/login"
         >Logout
       </router-link>
+      <button @click="logOut()">X</button>
     </nav>
 
     <!-- Mobile nav -->
@@ -73,6 +74,7 @@
               @click="togglenav(), resetLoadingIcon()"
               >Logout
             </router-link>
+            
           </div>
         </nav>
       </div>
@@ -83,6 +85,7 @@
 <script setup lang="ts">
 import { useStore } from "../stores/Store";
 import { storeToRefs } from "pinia";
+import { getMe, logOut } from "@/views/services/services";
 const store = useStore();
 let { nav } = storeToRefs(store);
 
@@ -92,6 +95,8 @@ const togglenav = () => {
 const resetLoadingIcon = () => {
   document.getElementById("loadingIcon1")?.classList.remove("hidden");
 };
+
+// const me = () => {}
 </script>
 
 <style></style>

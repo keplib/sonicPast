@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getApiChart = void 0;
+exports.logOut = exports.getMe = exports.getApiChart = void 0;
 const { getChart } = require("billboard-top-100");
 const dbClient = require("../database/client");
 require("dotenv").config();
@@ -86,6 +86,7 @@ const getCallback = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             console.log("The access token has been refreshed!");
             console.log("access_token:", access_token);
             spotifyApi.setAccessToken(access_token);
+            // res.cookie("SP", access_token);
         }), (expires_in / 2) * 1000);
     }
     catch (error) {
@@ -136,10 +137,30 @@ const getPlaylists = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         console.log("error sending playlist route", error);
     }
 });
+const getMe = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const data = yield spotifyApi.getMe();
+        res.status(200);
+        res.send(data);
+    }
+    catch (err) {
+        console.log(err);
+        res.status(409);
+    }
+});
+exports.getMe = getMe;
+const logOut = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    // res.redirect("http://localhost:8080/login");
+    yield spotifyApi.setAccessToken();
+    yield spotifyApi.setRefreshToken();
+    res.send('session destroyed');
+});
+exports.logOut = logOut;
 exports.default = {
     getApiChart: exports.getApiChart,
     getLogin,
     getPlaylists,
     findTrack,
     getCallback,
+    // getMe,
 };

@@ -21,17 +21,42 @@ const getChart = async (date: string) => {
   }
 };
 
-const createPlaylist = (date: string, toplist: Obj[] | []) => {
-  console.log('hi');
-  console.log(toplist);
+const createPlaylist = async (date: string, toplist: Obj[] | []) => {
+
   try {
-    axios.post("http://localhost:3000/findTrack", {
+    await axios.post("http://localhost:3000/findTrack", {
       date: date,
       songs: toplist,
     });
   } catch (error) {
     console.log("error creating playlist", error);
   }
+
 };
 
-export { createPlaylist, getChart };
+const getMe = async () => {
+  // let validated;
+  const options = {
+    method: "GET",
+    url: "http://localhost:3000/me",
+  };
+
+  try {
+    let validated = await axios.get("http://localhost:3000/me")
+    console.log(await validated);
+    return validated ? true : false;
+
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+
+}
+
+const logOut = async () => {
+  let res = await axios.get("http://localhost:3000/logOut");
+  console.log(res);
+
+} 
+
+export { createPlaylist, getChart, getMe, logOut };

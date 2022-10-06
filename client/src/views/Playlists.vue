@@ -7,7 +7,7 @@
   </h1>
   <div v-if="userPlaylists && userPlaylists.length > 0">
     <!-- PLAYLIST TO SHOW USER'S FAVOURITES -->
-    <div class="playlist-conatiner flex flex-row overflow-auto scrollbar-hide min-h-[400px]">
+    <div class="playlist-conatiner flex flex-row overflow-auto scrollbar-hide min-h-[400px] snap-x">
       <div id="loadingIcon1">
         <svg
           aria-hidden="true"
@@ -37,7 +37,7 @@
             :title="playlist['title']"
             :id="playlist['id']"
             :isFav="playlist['favourite']"
-            class="m-6"
+            class="m-6 snap-center"
           />
         </div>
         <div v-else class="m-0"></div>

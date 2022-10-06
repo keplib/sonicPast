@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 
+
 const { getChart } = require("billboard-top-100");
 const dbClient = require("../database/client");
 require("dotenv").config();
@@ -83,13 +84,14 @@ const getCallback = async (req: Request, res: Response): Promise<void> => {
     spotifyApi.setRefreshToken(refresh_token);
 
     console.log("access_token:", access_token);
-    console.log("refresh_token:", refresh_token);
+    console.log("refresh_token:", refresh_token);    
 
     console.log(
       `Sucessfully retreived access token. Expires in ${expires_in} s.`
     );
-
+ 
     res.redirect("http://localhost:8080/create");
+
 
     setInterval(async () => {
       const data = await spotifyApi.refreshAccessToken();
@@ -98,6 +100,7 @@ const getCallback = async (req: Request, res: Response): Promise<void> => {
       console.log("The access token has been refreshed!");
       console.log("access_token:", access_token);
       spotifyApi.setAccessToken(access_token);
+      // res.cookie("SP", access_token);
     }, (expires_in / 2) * 1000);
   } catch (error) {
     console.error("Error getting Tokens:", error);
@@ -157,10 +160,30 @@ const getPlaylists = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
+export const getMe = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const data = await spotifyApi.getMe();
+    res.status(200);
+    res.send(data);
+  } catch (err) {
+    console.log(err);
+    res.status(409);
+  }
+}
+
+export const logOut = async (req: Request, res: Response): Promise<void> => {
+
+  // res.redirect("http://localhost:8080/login");
+  await spotifyApi.setAccessToken();
+  await spotifyApi.setRefreshToken();
+  res.send('session destroyed');
+}
+
 export default {
   getApiChart,
   getLogin,
   getPlaylists,
   findTrack,
   getCallback,
+  // getMe,
 };
